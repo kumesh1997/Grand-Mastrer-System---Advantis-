@@ -1,10 +1,13 @@
 import { Button } from "@mui/material";
+import AnswerButton from "./Components/AnswerButton";
 
 function App() {
   return (
-    <div className=" text-base text-Red">
+    <div className="">
       Grand Master - Advantis
-      <Button variant="contained">Contained</Button>
+      {/* <Button variant="contained">Contained</Button> */}
+      <AnswerButton />
+      <Button />
     </div>
   );
 }
