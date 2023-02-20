@@ -10,7 +10,7 @@ const TimerButton = ({
     setClicked(!clicked);
   }
   return (
-    <div className=' text-center w-auto duration-75 hover:-translate-y-2 mr-4' onClick={ClickHandle} ><AccessAlarmsIcon  sx={{ fontSize: 45, color: '#228f5a' }} /></div>
+    <div className=' text-center w-auto duration-75 hover:-translate-y-2 mr-4 cursor-pointer' onClick={ClickHandle} ><AccessAlarmsIcon  sx={{ fontSize: 45, color: '#228f5a' }} /></div>
   )
 }
 

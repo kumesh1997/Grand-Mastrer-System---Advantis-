@@ -13,7 +13,7 @@ function QuestionNumber({
   }
 
   return (
-    <div className="test" onClick={handleClick}>
+    <div className="test cursor-pointer" onClick={handleClick}>
       <div className="number">
         <label>{QuestionNumber}</label>
       </div>
