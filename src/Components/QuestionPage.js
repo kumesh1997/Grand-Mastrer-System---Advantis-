@@ -6,12 +6,14 @@ import LinearProgressWithLabel from './LinearWithValueLabel';
 import data from '../data.json';
 // import image from '/img/image.jpg';
 import Image from '../images/Hogwarts.jpg';
+import { useNavigate, useParams } from 'react-router';
 
 const QuestionPage = () => {
 
     const [ DummyState, setDummyState ] = useState();
     let isCorrect = false;
-    const QId = 1;
+    const { QId } = useParams();
+    let nextPage = parseInt(QId)+1; 
     const [ QuestionData , setQuestionData ] = useState(null);
     const [ selectedAnswerNumber, setSelectedAnswerNumber ] = useState(2);
     const [ openTimer, setOpenTimer ] = useState(false);
@@ -19,6 +21,7 @@ const QuestionPage = () => {
 
 
     const [progress, setProgress] = React.useState(0);
+    const navigate = useNavigate();
 
     const getData = () => {
         setQuestionData(data[QId-1]);
@@ -57,7 +60,7 @@ const QuestionPage = () => {
     }
 
     const HandleNextButtonClick = () => {
-
+        navigate(`/questionbank`);
     }
 
   return (
