@@ -1,0 +1,26 @@
+[
+    {
+      "id" : 1,
+      "question" : "What country has the highest life expectancy? ",
+      "answers" : [ "Sri Lanka" , "Japan" , "Hong Kong" , "China"],
+      "answer" : 3 
+    },
+    {
+      "id" : 2,
+      "question" : "Which language has the more native speakers: English or Spanish?",
+      "answers" : [ "Spanish" , "English" , "Sinhala" , "Tamil"],
+      "answer" : 1 
+    },
+    {
+        "id" : 3,
+        "question" : "What car manufacturer had the highest revenue in 2020?",
+        "answers" : [ "MBW" , "Volkswagen" , "Benz" , "Toyota"],
+        "answer" : 2 
+      },
+      {
+        "id" : 4,
+        "question" : "Roald Amundsen was the first man to reach the South Pole, but where was he from?",
+        "answers" : [ "England" , "Denmark" , "Italy" , "Norway"],
+        "answer" : 4 
+      }
+]
