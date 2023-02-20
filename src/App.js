@@ -1,12 +1,16 @@
+import React from "react";
+import { useState } from "react";
 import { Button } from "@mui/material";
-import AnswerButton from "./Components/AnswerButton";
+import QuestionPage from "./Components/QuestionPage";
+
 
 function App() {
+
+
   return (
+
     <div className="">
-      Grand Master - Advantis
-      {/* <Button variant="contained">Contained</Button> */}
-      <AnswerButton />
+        <QuestionPage />
       <Button />
     </div>
   );
