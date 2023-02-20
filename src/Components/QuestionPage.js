@@ -10,6 +10,7 @@ import Image from '../images/Hogwarts.jpg';
 const QuestionPage = () => {
 
     const [ DummyState, setDummyState ] = useState();
+    let isCorrect = false;
     const QId = 1;
     const [ QuestionData , setQuestionData ] = useState(null);
     const [ selectedAnswerNumber, setSelectedAnswerNumber ] = useState(2);
@@ -39,14 +40,16 @@ const QuestionPage = () => {
         // alert(selectedAnswerNumber)
         console.log("Selected -> ", selectedAnswerNumber, "Answer ->",QuestionData.answer)
         if(selectedAnswerNumber === QuestionData.answer){
-            setCorrect(true);
+            // setCorrect(true);
+            isCorrect = true;
             console.log('Your Answer is True')
         }else{
-            setCorrect(false);
+            // setCorrect(false);
+            isCorrect = false;
             console.log('Your Answer is False')
         }
         setDummyState(Math.random());
-        console.log(correct)
+        console.log(isCorrect)
     }
 
     const HandleTimerButtonClick = () => {
