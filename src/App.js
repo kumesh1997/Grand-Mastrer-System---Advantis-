@@ -5,6 +5,7 @@ import QuestionBank from "./Screens/QuestionBank/QuestionBank";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Routes } from "react-router";
 import HomeScreen from "./Screens/HomeScreen/HomeScreen";
+import QuestionPage from "./Components/QuestionPage";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomeScreen></HomeScreen>} />
         <Route path="/questionbank" element={<QuestionBank></QuestionBank>} />
+        <Route path="/questionpage/:QId"  element={<QuestionPage />} />
       </Routes>
       <div className=" text-base text-Red">
         {/* Grand Master - Advantis */}
