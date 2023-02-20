@@ -5,9 +5,11 @@ import QuestionView from './QuestionView';
 import LinearProgressWithLabel from './LinearWithValueLabel';
 import data from '../data.json';
 // import image from '/img/image.jpg';
+import Image from '../images/Hogwarts.jpg';
 
 const QuestionPage = () => {
 
+    const [ DummyState, setDummyState ] = useState();
     const QId = 1;
     const [ QuestionData , setQuestionData ] = useState(null);
     const [ selectedAnswerNumber, setSelectedAnswerNumber ] = useState(2);
@@ -18,7 +20,7 @@ const QuestionPage = () => {
     const [progress, setProgress] = React.useState(0);
 
     const getData = () => {
-        setQuestionData((data[QId-1]));
+        setQuestionData(data[QId-1]);
     }
 
     React.useEffect(() => {
@@ -31,16 +33,20 @@ const QuestionPage = () => {
         clearInterval(timer);
       };
       
-    }, [correct]);
+    }, []);
 
     const HandleAnswerButtonClick = () => {
-        alert(selectedAnswerNumber)
-        console.log(QuestionData.answer)
+        // alert(selectedAnswerNumber)
+        console.log("Selected -> ", selectedAnswerNumber, "Answer ->",QuestionData.answer)
         if(selectedAnswerNumber === QuestionData.answer){
             setCorrect(true);
+            console.log('Your Answer is True')
         }else{
             setCorrect(false);
+            console.log('Your Answer is False')
         }
+        setDummyState(Math.random());
+        console.log(correct)
     }
 
     const HandleTimerButtonClick = () => {
@@ -52,17 +58,19 @@ const QuestionPage = () => {
     }
 
   return (
-    <div className=" "   >
-            <div className=' p-2 mt-4'>
+    <div className=" text-center fixed min-h-full min-w-full bg-cover bg-opacity-40" style={{
+        backgroundImage: `url(${Image})`,
+        backgroundRepeat: false,
+    }}  >
+            <div className=' p-2'  >
                  {/* { openTimer? <LinearProgressWithLabel value={progress} /> : null} */}
-                {/* <img src='' alt='image'  /> */}
             </div>
             <div className=' p-4'>
-                <QuestionView />
+                <QuestionView Question={data[QId-1].question} />
             </div>
             <div className=" grid grid-cols-2 gap-6 p-6">
             {
-                data[QId].answers.map((item, index) => {
+                data[QId-1].answers.map((item, index) => {
                     return <AnswerButton key={index} AnswerNumber={index+1} Answer={item} HandleOnClick={() => setSelectedAnswerNumber(index+1)} />
                 })
             }
