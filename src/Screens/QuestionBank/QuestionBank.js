@@ -9,7 +9,7 @@ function QuestionBank() {
     <div className=" text-center fixed min-h-full min-w-full bg-cover " style={{
       backgroundImage: `url(${Image})`,
       backgroundRepeat: false,
-  }} >
+      }} >
       <div class="grid-container overflow-y-auto">
       {
         data.map((item, index) => {

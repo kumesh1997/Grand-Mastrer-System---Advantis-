@@ -7,6 +7,7 @@ import data from '../data.json';
 // import image from '/img/image.jpg';
 import Image from '../images/Hogwarts.jpg';
 import { useNavigate, useParams } from 'react-router';
+import { Alert } from '@mui/material';
 
 const QuestionPage = () => {
 
@@ -46,10 +47,12 @@ const QuestionPage = () => {
             // setCorrect(true);
             isCorrect = true;
             console.log('Your Answer is True')
+            alert('Your Answer is True')
         }else{
             // setCorrect(false);
             isCorrect = false;
             console.log('Your Answer is False')
+            alert('Your Answer is False')
         }
         setDummyState(Math.random());
         console.log(isCorrect)
