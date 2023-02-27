@@ -4,19 +4,11 @@ import CorrectAnswersButton from './CorrectAnswersButton'
 import NextButton from './NextButton'
 
 const BottomControlBar = ({
-  TimerButtonClick,
-  AnswerButtonClick,
-  NextButtonClick
+	TimerButtonClick,
+	AnswerButtonClick,
+	NextButtonClick,
 }) => {
-  return (
-    <div className=' flex justify-end relative top-52'>
-        <div className=' flex justify-between'>
-            <div><TimerButton OnClickHandler={() => TimerButtonClick()}/></div>
-            <div><CorrectAnswersButton OnClickHandler={() => AnswerButtonClick()} /></div>
-            <div><NextButton OnClickHandler={() => NextButtonClick()} /></div>
-        </div>
-    </div>
-  )
+	return <></>
 }
 
 export default BottomControlBar
