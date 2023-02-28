@@ -2,7 +2,7 @@ import React from 'react'
 import QuestionNumber from '../../Components/QuestionNumber/QuestionNumber'
 import './QuestionBank.css'
 import data from '../../data.json'
-import Image from '../../images/QB-BG.jpg'
+import Image from '../../images/cover.jpg'
 import { useParams } from 'react-router'
 
 function QuestionBank() {

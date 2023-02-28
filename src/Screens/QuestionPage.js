@@ -4,12 +4,14 @@ import BottomControlBar from '../Components/BottomControlBar'
 import QuestionView from '../Components/QuestionView'
 import data from '../data.json'
 // import image from '/img/image.jpg';
-import Image from '../images/Hogwarts.jpg'
+import Image from '../images/cover2.jpeg'
 import { useNavigate, useParams } from 'react-router'
 import { Grid } from '@mui/material'
 import TimerButton from '../Components/TimerButton'
 import CorrectAnswersButton from '../Components/CorrectAnswersButton'
 import NextButton from '../Components/NextButton'
+import cover from '../images/loop2.mp4'
+import Timer from '../Components/Timer'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
@@ -82,9 +84,10 @@ const QuestionPage = () => {
 				backgroundImage: `url(${Image})`,
 				backgroundRepeat: false,
 			}}
+			className=' bg-cover'
 		>
-			<Grid container className=' p-2'>
-				{/* { openTimer? <LinearProgressWithLabel value={progress} /> : null} */}
+			<Grid container className=' p-2 text-center'>
+				<Timer /> 
 			</Grid>
 			<Grid
 				container

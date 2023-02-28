@@ -55,9 +55,9 @@
 	},
 	{
 		"id": 10,
-		"question": "Which language has the more native speakers: English or Spanish?",
-		"answers": ["Spanish", "English", "Sinhala", "Tamil"],
-		"answer": 1
+		"question": "John works in receiving activity. He received a truck containing 32 pallet of boxes. Each pallet is built with 40 boxes. In one box 48 items are stored. John inspected that one pallet is short of 3 boxes. John has to record the number of items received to the warehouse. What is the total number of items received?",
+		"answers": ["61,440", "60,160", "61,296", "61,320"],
+		"answer": 4
 	},
 	{
 		"id": 11,
