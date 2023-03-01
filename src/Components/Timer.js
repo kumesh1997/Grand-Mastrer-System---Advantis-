@@ -51,17 +51,18 @@ const Timer = () => {
 
    
   return (
-    <div>
+    <div className=' absolute top-1 left-1'>
         <div 
             className=' text-center w-32 bg-black border-white border-2
                         text-white p-2 font-bold text-3xl rounded-lg cursor-pointer duration-100 active:border-black'
-            onClick={ClickHandle}>
+            >
                 <h2 
                     className={ seconds<10? 'text-red-600' 
                     : 'text-white'}>{minutes<10? "0"+ minutes : minutes} 
                     : {seconds<10? "0"+seconds : seconds}
                 </h2>
-                <button className=' bg-green-600 p-2 rounded-md mt-1 w-full text-lg'>{clicked === 0 ? 'Start' : 'Pause' }</button>
+                <button className=' bg-green-600 p-2 rounded-md mt-1 w-full text-lg' onClick={ClickHandle}>{clicked === 0 ? 'Start' : 'Pause' }</button>
+                {/* <button onClick={Stop}>Stop</button> */}
         </div>
     </div>
   )
