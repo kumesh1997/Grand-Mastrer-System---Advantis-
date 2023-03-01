@@ -54,8 +54,10 @@ const QuestionPage = () => {
 		if (triesAvailable < 1) {
 			resetState()
 			data[QId - 1].viewed = true
-			navigate(`/question/${round}/${nextPage}`)
+			
 		}
+		navigate(`/questionbank/${round}`)
+		
 	}
 
 	const HandleSwitchButtonClick = async () => {
@@ -118,7 +120,7 @@ const QuestionPage = () => {
 				{parseInt(round) === 3 && (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
 				)}
-				<TimerButton OnClickHandler={() => HandleTimerButtonClick()} />
+				{/* <TimerButton OnClickHandler={() => HandleTimerButtonClick()} /> */}
 				<CorrectAnswersButton
 					showCorrect={showCorrect}
 					OnClickHandler={() => HandleAnswerButtonClick()}
