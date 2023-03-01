@@ -31,27 +31,31 @@ const QuestionPage = () => {
 		setQuestionData(data[QId - 1])
 	}
 	useEffect(() => {
-		parseInt(round) === 3 ? setTriesAvailable(1) : setTriesAvailable(0)
+		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(2)
 
 		getData()
 	}, [QId])
 
 	const HandleAnswerButtonClick = async () => {
-		setShowCorrect(!showCorrect)
-		if (showCorrect) {
-			setTriesAvailable(triesAvailable - 1)
-		}
+		if (selectedAnswerNumber) {
+			setShowCorrect(!showCorrect)
+			if (showCorrect) {
+				setTriesAvailable(triesAvailable - 1)
+			}
 
-		data[QId - 1].viewed = true
+			data[QId - 1].viewed = true
+		}
 	}
 
 	const HandleTimerButtonClick = () => {
 		setOpenTimer(!openTimer)
 	}
 	const HandleNextButtonClick = () => {
-		resetState()
-		data[QId - 1].viewed = true
-		navigate(`/question/${round}/${nextPage}`)
+		if (triesAvailable < 1) {
+			resetState()
+			data[QId - 1].viewed = true
+			navigate(`/question/${round}/${nextPage}`)
+		}
 	}
 
 	const HandleSwitchButtonClick = async () => {
@@ -63,7 +67,7 @@ const QuestionPage = () => {
 		navigate(`/questionbank/${round}`)
 	}
 	const resetState = () => {
-		parseInt(round) === 3 ? setTriesAvailable(1) : setTriesAvailable(0)
+		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(1)
 		setOpenTimer(false)
 		setShowCorrect(false)
 		setSelectedAnswerNumber(null)

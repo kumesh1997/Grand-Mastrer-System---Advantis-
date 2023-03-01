@@ -32,7 +32,7 @@ const AnswerButton = ({
 				sx={{
 					...buttonCommonCss,
 					backgroundColor:
-						parseInt(triesAvailable) < 1 &&
+						parseInt(triesAvailable) < 2 &&
 						showCorrect &&
 						AnswerNumber === CorrectAnswer
 							? '#075716' //green color
