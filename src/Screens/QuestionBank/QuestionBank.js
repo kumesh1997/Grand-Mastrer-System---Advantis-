@@ -2,7 +2,7 @@ import React from 'react'
 import QuestionNumber from '../../Components/QuestionNumber/QuestionNumber'
 import './QuestionBank.css'
 import data from '../../data.json'
-import Image from '../../images/QB-BG.jpg'
+import Image from '../../images/cover.jpg'
 import { useParams } from 'react-router'
 
 function QuestionBank() {
@@ -19,7 +19,7 @@ function QuestionBank() {
 				{data.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>
-							<QuestionNumber QuestionNumber={item.id} round={round} />
+							<QuestionNumber viewed={item.viewed} QuestionNumber={item.id} round={round} />
 						</div>
 					)
 				})}

@@ -7,6 +7,7 @@ const AnswerButton = ({
 	CorrectAnswer = 1,
 	Selected,
 	onClick,
+	reviewAnswer
 }) => {
 	const [buttonClicked, setButtonClicked] = useState(false)
 	const inSideClickHandle = () => {
@@ -29,7 +30,7 @@ const AnswerButton = ({
 					...buttonCommonCss,
 					backgroundColor:
 						Selected === AnswerNumber && Selected === CorrectAnswer
-							? 'red'
+							? '#075716'
 							: Selected === AnswerNumber
 							? '#E4A11B'
 							: 'white',

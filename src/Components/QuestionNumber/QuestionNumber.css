@@ -26,13 +26,21 @@
   }
 }
 
+@keyframes moveSide {
+  from {
+    transform: rotate(16deg) translateY(0);
+  }
+  to {
+    transform: rotate(16deg) translateY(-30px);
+  }
+}
+
 label {
   margin-top: 20%;
   font-weight: bolder;
   transform: rotate(-15deg) translateY(0);
 }
 .number {
-  color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   opacity: 80%;

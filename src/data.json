@@ -3,96 +3,112 @@
 		"id": 1,
 		"question": "What country has the highest life expectancy? ",
 		"answers": ["Sri Lanka", "Japan", "Hong Kong", "China"],
-		"answer": 3
+		"answer": 3,
+		"viewed" : false
 	},
 	{
 		"id": 2,
 		"question": "Which language has the more native speakers: English or Spanish?",
 		"answers": ["Spanish", "English", "Sinhala", "Tamil"],
-		"answer": 1
+		"answer": 1,
+		"viewed" : false
 	},
 	{
 		"id": 3,
 		"question": "What car manufacturer had the highest revenue in 2020?",
 		"answers": ["MBW", "Volkswagen", "Benz", "Toyota"],
-		"answer": 2
+		"answer": 2,
+		"viewed" : false
 	},
 	{
 		"id": 4,
 		"question": "Roald Amundsen was the first man to reach the South Pole, but where was he from?",
 		"answers": ["England", "Denmark", "Italy", "Norway"],
-		"answer": 4
+		"answer": 4,
+		"viewed" : false
 	},
 	{
 		"id": 5,
 		"question": "What country has the highest life expectancy? ",
 		"answers": ["Sri Lanka", "Japan", "Hong Kong", "China"],
-		"answer": 3
+		"answer": 3,
+		"viewed" : false
 	},
 	{
 		"id": 6,
 		"question": "Which language has the more native speakers: English or Spanish?",
 		"answers": ["Spanish", "English", "Sinhala", "Tamil"],
-		"answer": 1
+		"answer": 1,
+		"viewed" : false
 	},
 	{
 		"id": 7,
 		"question": "What car manufacturer had the highest revenue in 2020?",
 		"answers": ["MBW", "Volkswagen", "Benz", "Toyota"],
-		"answer": 2
+		"answer": 2,
+		"viewed" : false
 	},
 	{
 		"id": 8,
 		"question": "Roald Amundsen was the first man to reach the South Pole, but where was he from?",
 		"answers": ["England", "Denmark", "Italy", "Norway"],
-		"answer": 4
+		"answer": 4,
+		"viewed" : false
 	},
 	{
 		"id": 9,
 		"question": "What country has the highest life expectancy? ",
 		"answers": ["Sri Lanka", "Japan", "Hong Kong", "China"],
-		"answer": 3
+		"answer": 3,
+		"viewed" : false
 	},
 	{
 		"id": 10,
-		"question": "Which language has the more native speakers: English or Spanish?",
-		"answers": ["Spanish", "English", "Sinhala", "Tamil"],
-		"answer": 1
+		"question": "John works in receiving activity. He received a truck containing 32 pallet of boxes. Each pallet is built with 40 boxes. In one box 48 items are stored. John inspected that one pallet is short of 3 boxes. John has to record the number of items received to the warehouse. What is the total number of items received?",
+		"answers": ["61,440", "60,160", "61,296", "61,320"],
+		"answer": 4,
+		"viewed" : false
 	},
 	{
 		"id": 11,
 		"question": "What car manufacturer had the highest revenue in 2020?",
 		"answers": ["MBW", "Volkswagen", "Benz", "Toyota"],
-		"answer": 2
+		"answer": 2,
+		"viewed" : false
 	},
 	{
 		"id": 12,
 		"question": "Roald Amundsen was the first man to reach the South Pole, but where was he from?",
 		"answers": ["England", "Denmark", "Italy", "Norway"],
-		"answer": 4
+		"answer": 4,
+		"viewed" : false
 	},
 	{
 		"id": 13,
 		"question": "What country has the highest life expectancy? ",
 		"answers": ["Sri Lanka", "Japan", "Hong Kong", "China"],
-		"answer": 3
+		"answer": 3,
+		"viewed" : false
 	},
 	{
 		"id": 14,
 		"question": "Which language has the more native speakers: English or Spanish?",
 		"answers": ["Spanish", "English", "Sinhala", "Tamil"],
-		"answer": 1
+		"answer": 1,
+		"viewed" : false
 	},
 	{
 		"id": 15,
 		"question": "What car manufacturer had the highest revenue in 2020?",
 		"answers": ["MBW", "Volkswagen", "Benz", "Toyota"],
-		"answer": 2
+		"answer": 2,
+		"viewed" : false
 	},
 	{
 		"id": 16,
 		"question": "Roald Amundsen was the first man to reach the South Pole, but where was he from?",
 		"answers": ["England", "Denmark", "Italy", "Norway"],
-		"answer": 4
+		"answer": 4,
+		"viewed" : false
 	}
 ]
