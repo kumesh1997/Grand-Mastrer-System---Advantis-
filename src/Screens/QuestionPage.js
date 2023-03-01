@@ -126,7 +126,7 @@ const QuestionPage = () => {
 			</Grid>
 			<Grid container justifyContent={'flex-end'}>
 				{ parseInt(round) === 3 && <SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />}
-				<TimerButton OnClickHandler={() => HandleTimerButtonClick()} />
+				{/* <TimerButton OnClickHandler={() => HandleTimerButtonClick()} /> */}
 				<CorrectAnswersButton
 					OnClickHandler={() => HandleAnswerButtonClick()}
 				/>
