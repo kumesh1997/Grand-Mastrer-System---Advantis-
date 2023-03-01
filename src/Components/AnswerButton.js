@@ -38,6 +38,10 @@ const AnswerButton = ({
 							? '#075716' //green color
 							: showCorrect &&
 							  SelectedAnswerNumber === AnswerNumber &&
+							  AnswerNumber === CorrectAnswer
+							? '#075716' //green color
+							: showCorrect &&
+							  SelectedAnswerNumber === AnswerNumber &&
 							  AnswerNumber !== CorrectAnswer
 							? 'red'
 							: !showCorrect && SelectedAnswerNumber === AnswerNumber
