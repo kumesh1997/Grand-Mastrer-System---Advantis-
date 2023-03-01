@@ -19,7 +19,7 @@ const AnswerButton = ({
 
 	const buttonCommonCss = {
 		width: '400px',
-		height: '100px',
+		height: '50px',
 		opacity: '0.9',
 		borderRadius: 50,
 		color: 'black',
