@@ -79,6 +79,7 @@ const QuestionPage = () => {
 				height: '100vh',
 				backgroundImage: `url(${Image})`,
 				backgroundRepeat: false,
+				alignContent: 'space-between',
 			}}
 			className=' bg-cover'
 		>

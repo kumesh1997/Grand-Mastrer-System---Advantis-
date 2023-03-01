@@ -10,7 +10,7 @@
 	background-repeat: no-repeat;
 	position: relative;
 	transform: rotate(16deg) translateY(0); /* add initial transform values */
-	animation-name: moveUp; /* set the animation name */
+	animation-name: animation2; /* set the animation name */
 	animation-duration: 1s; /* set the animation duration */
 	animation-iteration-count: infinite; /* repeat the animation indefinitely */
 	animation-direction: alternate; /* reverse the animation direction on each iteration */
@@ -24,14 +24,14 @@
 	background-repeat: no-repeat;
 	position: relative;
 	transform: rotate(16deg) translateY(0); /* add initial transform values */
-	animation-name: moveSide; /* set the animation name */
+	animation-name: animation1; /* set the animation name */
 	animation-duration: 1s; /* set the animation duration */
 	animation-iteration-count: infinite; /* repeat the animation indefinitely */
 	animation-direction: alternate; /* reverse the animation direction on each iteration */
 }
 
 /* Define the animation keyframes */
-@keyframes moveUp {
+@keyframes animation1 {
 	from {
 		transform: rotate(16deg) translateY(0);
 	}
@@ -40,7 +40,7 @@
 	}
 }
 
-@keyframes moveSide {
+@keyframes animation2 {
 	from {
 		transform: rotate(16deg) translateY(0);
 	}
