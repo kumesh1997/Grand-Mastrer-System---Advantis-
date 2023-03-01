@@ -16,11 +16,11 @@ import SwitchButton from '../Components/SwitchButton'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
-	const [DummyState, setDummyState] = useState()
 	const [QuestionData, setQuestionData] = useState()
 	const [selectedAnswerNumber, setSelectedAnswerNumber] = useState()
 	const [openTimer, setOpenTimer] = useState(false)
 	const [showCorrect, setShowCorrect] = useState(false)
+	const [triesAvailable, setTriesAvailable] = useState(2)
 	const [progress, setProgress] = useState(0)
 
 	const navigate = useNavigate()
@@ -30,31 +30,26 @@ const QuestionPage = () => {
 	const getData = () => {
 		setQuestionData(data[QId - 1])
 	}
-	console.log(selectedAnswerNumber)
 	useEffect(() => {
+		parseInt(round) === 3 ? setTriesAvailable(1) : setTriesAvailable(0)
+
 		getData()
 	}, [QId])
 
 	const HandleAnswerButtonClick = async () => {
 		setShowCorrect(!showCorrect)
-
-		if (selectedAnswerNumber === QuestionData.answer) {
-		} else {
-			console.log('Your Answer is False')
-			alert('Your Answer is False')
+		if (showCorrect) {
+			setTriesAvailable(triesAvailable - 1)
 		}
-		setDummyState(Math.random())
-		data.map((item, index) => {
-			if (item.id === parseInt(QId)) {
-				item.viewed = true
-			}
-		})
+
+		data[QId - 1].viewed = true
 	}
 
 	const HandleTimerButtonClick = () => {
 		setOpenTimer(!openTimer)
 	}
 	const HandleNextButtonClick = () => {
+		resetState()
 		data[QId - 1].viewed = true
 		navigate(`/question/${round}/${nextPage}`)
 	}
@@ -66,6 +61,12 @@ const QuestionPage = () => {
 			}
 		})
 		navigate(`/questionbank/${round}`)
+	}
+	const resetState = () => {
+		parseInt(round) === 3 ? setTriesAvailable(1) : setTriesAvailable(0)
+		setOpenTimer(false)
+		setShowCorrect(false)
+		setSelectedAnswerNumber(null)
 	}
 	return (
 		<Grid
@@ -96,6 +97,7 @@ const QuestionPage = () => {
 								key={index}
 								AnswerNumber={index + 1}
 								Answer={item}
+								triesAvailable={triesAvailable}
 								showCorrect={showCorrect}
 								CorrectAnswer={QuestionData.answer}
 								SelectedAnswerNumber={selectedAnswerNumber}

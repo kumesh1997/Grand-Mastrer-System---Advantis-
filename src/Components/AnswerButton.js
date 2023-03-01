@@ -1,5 +1,6 @@
 import { Button, Grid } from '@mui/material'
 import React, { useState } from 'react'
+import { useParams } from 'react-router'
 
 const AnswerButton = ({
 	Answer = 'Answer',
@@ -7,6 +8,7 @@ const AnswerButton = ({
 	CorrectAnswer = 1,
 	SelectedAnswerNumber,
 	showCorrect = false,
+	triesAvailable,
 	onClick,
 }) => {
 	const [buttonClicked, setButtonClicked] = useState(false)
@@ -30,9 +32,9 @@ const AnswerButton = ({
 				sx={{
 					...buttonCommonCss,
 					backgroundColor:
+						parseInt(triesAvailable) < 1 &&
 						showCorrect &&
-						SelectedAnswerNumber === AnswerNumber &&
-						SelectedAnswerNumber === CorrectAnswer
+						AnswerNumber === CorrectAnswer
 							? '#075716' //green color
 							: showCorrect &&
 							  SelectedAnswerNumber === AnswerNumber &&
