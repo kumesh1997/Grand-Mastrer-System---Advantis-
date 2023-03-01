@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AnswerButton from '../Components/AnswerButton'
 import BottomControlBar from '../Components/BottomControlBar'
 import QuestionView from '../Components/QuestionView'
@@ -30,7 +30,7 @@ const QuestionPage = () => {
 		setQuestionData(data[QId - 1])
 	}
 	console.log(selectedAnswerNumber)
-	React.useEffect(() => {
+	useEffect(() => {
 		getData()
 		// const timer = setInterval(() => {
 		// 	setProgress((prevProgress) =>
@@ -69,7 +69,6 @@ const QuestionPage = () => {
 	const HandleTimerButtonClick = () => {
 		setOpenTimer(!openTimer)
 	}
-
 	const HandleNextButtonClick = () => {
 		navigate(`/questionbank/${round}`)
 	}
