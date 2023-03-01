@@ -16,71 +16,55 @@ import SwitchButton from '../Components/SwitchButton'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
-
 	const [DummyState, setDummyState] = useState()
 	const [QuestionData, setQuestionData] = useState()
 	const [selectedAnswerNumber, setSelectedAnswerNumber] = useState()
 	const [openTimer, setOpenTimer] = useState(false)
-	const [correct, setCorrect] = useState(false)
+	const [showCorrect, setShowCorrect] = useState(false)
 	const [progress, setProgress] = useState(0)
 
 	const navigate = useNavigate()
 
 	let nextPage = parseInt(QId) + 1
-	let reviewAnswer = false
 
 	const getData = () => {
 		setQuestionData(data[QId - 1])
-		setCorrect(data[QId - 1].answer);
 	}
 	console.log(selectedAnswerNumber)
 	useEffect(() => {
 		getData()
-		// const timer = setInterval(() => {
-		// 	setProgress((prevProgress) =>
-		// 		prevProgress >= 100 ? 1 : prevProgress + 1
-		// 	)
-		// }, 100)
-
-		// return () => {
-		// 	clearInterval(timer)
-		// }
-	}, [reviewAnswer])
+	}, [QId])
 
 	const HandleAnswerButtonClick = async () => {
+		setShowCorrect(!showCorrect)
+
 		if (selectedAnswerNumber === QuestionData.answer) {
-			// setCorrect(true);
-			reviewAnswer = true
-			console.log('Your Answer is True')
-			alert('Your Answer is True')
 		} else {
-			// setCorrect(false);
-			reviewAnswer = false
 			console.log('Your Answer is False')
 			alert('Your Answer is False')
 		}
 		setDummyState(Math.random())
-		console.log(reviewAnswer)
-		await data.map((item, index) => {
-			if(item.id === parseInt(QId)){
-				item.viewed=true;
+		data.map((item, index) => {
+			if (item.id === parseInt(QId)) {
+				item.viewed = true
 			}
-		});
+		})
 	}
 
 	const HandleTimerButtonClick = () => {
 		setOpenTimer(!openTimer)
 	}
 	const HandleNextButtonClick = () => {
-		navigate(`/questionbank/${round}`)
+		data[QId - 1].viewed = true
+		navigate(`/question/${round}/${nextPage}`)
 	}
 
 	const HandleSwitchButtonClick = async () => {
-		await data.map((item, index) => {
-			if(item.id === parseInt(QId)){
-				item.viewed=true;
+		data.map((item, index) => {
+			if (item.id === parseInt(QId)) {
+				item.viewed = true
 			}
-		});
+		})
 		navigate(`/questionbank/${round}`)
 	}
 	return (
@@ -94,7 +78,7 @@ const QuestionPage = () => {
 			className=' bg-cover'
 		>
 			<Grid container className=' p-2 text-center'>
-				<Timer /> 
+				<Timer />
 			</Grid>
 			<Grid
 				container
@@ -112,9 +96,9 @@ const QuestionPage = () => {
 								key={index}
 								AnswerNumber={index + 1}
 								Answer={item}
+								showCorrect={showCorrect}
 								CorrectAnswer={QuestionData.answer}
-								Selected={selectedAnswerNumber}
-								reviewAnswer={reviewAnswer}
+								SelectedAnswerNumber={selectedAnswerNumber}
 								onClick={() => {
 									// console.log('clicked')
 									setSelectedAnswerNumber(index + 1)
@@ -124,12 +108,19 @@ const QuestionPage = () => {
 					})}
 			</Grid>
 			<Grid container justifyContent={'flex-end'}>
-				{ parseInt(round) === 3 && <SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />}
+				{parseInt(round) === 3 && (
+					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
+				)}
 				<TimerButton OnClickHandler={() => HandleTimerButtonClick()} />
 				<CorrectAnswersButton
+					showCorrect={showCorrect}
 					OnClickHandler={() => HandleAnswerButtonClick()}
 				/>
-				<NextButton OnClickHandler={() => HandleNextButtonClick()} />
+				{parseInt(QId) !== data.length ? (
+					<NextButton OnClickHandler={() => HandleNextButtonClick()} />
+				) : (
+					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
+				)}
 			</Grid>
 		</Grid>
 	)

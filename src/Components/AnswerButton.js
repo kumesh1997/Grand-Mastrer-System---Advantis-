@@ -5,9 +5,9 @@ const AnswerButton = ({
 	Answer = 'Answer',
 	AnswerNumber = 0,
 	CorrectAnswer = 1,
-	Selected,
+	SelectedAnswerNumber,
+	showCorrect = false,
 	onClick,
-	reviewAnswer
 }) => {
 	const [buttonClicked, setButtonClicked] = useState(false)
 	const inSideClickHandle = () => {
@@ -18,9 +18,10 @@ const AnswerButton = ({
 	const buttonCommonCss = {
 		width: '400px',
 		height: '100px',
-		opacity: '0.8',
+		opacity: '0.9',
 		borderRadius: 50,
 		color: 'black',
+		fontWeight: 400,
 	}
 	return (
 		<Grid item sm={6} onClick={inSideClickHandle}>
@@ -29,14 +30,22 @@ const AnswerButton = ({
 				sx={{
 					...buttonCommonCss,
 					backgroundColor:
-						Selected === AnswerNumber && Selected === CorrectAnswer
-							? '#075716'
-							: Selected === AnswerNumber
-							? '#E4A11B'
+						showCorrect &&
+						SelectedAnswerNumber === AnswerNumber &&
+						SelectedAnswerNumber === CorrectAnswer
+							? '#075716' //green color
+							: showCorrect &&
+							  SelectedAnswerNumber === AnswerNumber &&
+							  AnswerNumber !== CorrectAnswer
+							? 'red'
+							: !showCorrect && SelectedAnswerNumber === AnswerNumber
+							? '#E4A11B' //brown color
 							: 'white',
 				}}
 			>
-				[ {AnswerNumber} ] {Answer}
+				<strong>
+					[ {AnswerNumber} ] {Answer}
+				</strong>
 			</Button>
 		</Grid>
 	)
