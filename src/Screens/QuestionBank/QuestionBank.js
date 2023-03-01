@@ -19,7 +19,7 @@ function QuestionBank() {
 				{data.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>
-							<QuestionNumber QuestionNumber={item.id} round={round} />
+							<QuestionNumber viewed={item.viewed} QuestionNumber={item.id} round={round} />
 						</div>
 					)
 				})}

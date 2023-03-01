@@ -12,6 +12,7 @@ import CorrectAnswersButton from '../Components/CorrectAnswersButton'
 import NextButton from '../Components/NextButton'
 import cover from '../images/loop2.mp4'
 import Timer from '../Components/Timer'
+import SwitchButton from '../Components/SwitchButton'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
@@ -26,10 +27,11 @@ const QuestionPage = () => {
 	const navigate = useNavigate()
 
 	let nextPage = parseInt(QId) + 1
-	let isCorrect = false
+	let reviewAnswer = false
 
 	const getData = () => {
 		setQuestionData(data[QId - 1])
+		setCorrect(data[QId - 1].answer);
 	}
 	console.log(selectedAnswerNumber)
 	React.useEffect(() => {
@@ -43,29 +45,27 @@ const QuestionPage = () => {
 		// return () => {
 		// 	clearInterval(timer)
 		// }
-	}, [])
+	}, [reviewAnswer])
 
-	const HandleAnswerButtonClick = () => {
-		// alert(selectedAnswerNumber)
-		console.log(
-			'Selected -> ',
-			selectedAnswerNumber,
-			'Answer ->',
-			QuestionData.answer
-		)
+	const HandleAnswerButtonClick = async () => {
 		if (selectedAnswerNumber === QuestionData.answer) {
 			// setCorrect(true);
-			isCorrect = true
+			reviewAnswer = true
 			console.log('Your Answer is True')
 			alert('Your Answer is True')
 		} else {
 			// setCorrect(false);
-			isCorrect = false
+			reviewAnswer = false
 			console.log('Your Answer is False')
 			alert('Your Answer is False')
 		}
 		setDummyState(Math.random())
-		console.log(isCorrect)
+		console.log(reviewAnswer)
+		await data.map((item, index) => {
+			if(item.id === parseInt(QId)){
+				item.viewed=true;
+			}
+		});
 	}
 
 	const HandleTimerButtonClick = () => {
@@ -76,6 +76,14 @@ const QuestionPage = () => {
 		navigate(`/questionbank/${round}`)
 	}
 
+	const HandleSwitchButtonClick = async () => {
+		await data.map((item, index) => {
+			if(item.id === parseInt(QId)){
+				item.viewed=true;
+			}
+		});
+		navigate(`/questionbank/${round}`)
+	}
 	return (
 		<Grid
 			container
@@ -107,8 +115,9 @@ const QuestionPage = () => {
 								Answer={item}
 								CorrectAnswer={QuestionData.answer}
 								Selected={selectedAnswerNumber}
+								reviewAnswer={reviewAnswer}
 								onClick={() => {
-									console.log('clicked')
+									// console.log('clicked')
 									setSelectedAnswerNumber(index + 1)
 								}}
 							/>
@@ -116,6 +125,7 @@ const QuestionPage = () => {
 					})}
 			</Grid>
 			<Grid container justifyContent={'flex-end'}>
+				{ parseInt(round) === 3 && <SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />}
 				<TimerButton OnClickHandler={() => HandleTimerButtonClick()} />
 				<CorrectAnswersButton
 					OnClickHandler={() => HandleAnswerButtonClick()}

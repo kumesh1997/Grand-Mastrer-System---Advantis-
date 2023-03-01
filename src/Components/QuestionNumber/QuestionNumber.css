@@ -41,7 +41,6 @@ label {
   transform: rotate(-15deg) translateY(0);
 }
 .number {
-  color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
   opacity: 80%;
