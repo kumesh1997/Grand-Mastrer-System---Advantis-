@@ -22,7 +22,7 @@ const QuestionPage = () => {
 	const [showCorrect, setShowCorrect] = useState(false)
 	const [triesAvailable, setTriesAvailable] = useState(2)
 	const [progress, setProgress] = useState(0)
-	const childRef = useRef();
+	const childRef = useRef()
 
 	const navigate = useNavigate()
 
@@ -55,10 +55,8 @@ const QuestionPage = () => {
 		if (triesAvailable < 1) {
 			resetState()
 			data[QId - 1].viewed = true
-			
 		}
 		navigate(`/questionbank/${round}`)
-		
 	}
 
 	const HandleSwitchButtonClick = async () => {
@@ -97,9 +95,10 @@ const QuestionPage = () => {
 				textAlign={'center'}
 				alignContent={'center'}
 				maxWidth
-
 			>
-				{ (QuestionData && QuestionData.image) && <img width={350}  src={QuestionData.image} alt='image' />}
+				{QuestionData && QuestionData.image && (
+					<img width={350} src={QuestionData.image} alt='image' />
+				)}
 			</Grid>
 			<Grid
 				container
@@ -109,7 +108,7 @@ const QuestionPage = () => {
 			>
 				{QuestionData && <QuestionView Question={QuestionData.question} />}
 			</Grid>
-			<Grid container spacing={4} textAlign={'center'} alignContent={'center'}>
+
 			<Grid container spacing={4} textAlign={'center'} alignContent={'center'}>
 				{QuestionData &&
 					QuestionData.answers.map((item, index) => {
@@ -124,9 +123,8 @@ const QuestionPage = () => {
 								SelectedAnswerNumber={selectedAnswerNumber}
 								onClick={() => {
 									// console.log('clicked')
-									childRef.current.StopTheWatch();
-									setSelectedAnswerNumber(index + 1);
-									
+									childRef.current.StopTheWatch()
+									setSelectedAnswerNumber(index + 1)
 								}}
 							/>
 						)
