@@ -10,7 +10,7 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 		navigate(`/question/${round}/${QuestionNumber}`)
 	}
 	let css
-	if (parseInt(QuestionNumber) % 5 === 2 ) {
+	if (parseInt(QuestionNumber) % 5 === 1 ) {
 		css = viewed
 			? 'pointer-events-none test2'
 			: ' test2 cursor-pointer duration-75 active:scale-95'
