@@ -25,6 +25,11 @@ const AnswerButton = ({
 		borderRadius: 50,
 		color: 'black',
 		fontWeight: 400,
+		fontSize: '1.2em',
+		'&:hover': {
+			backgroundColor: '#ffffff',
+			color: 'black',
+		},
 	}
 	return (
 		<Grid item sm={6} onClick={inSideClickHandle}>
@@ -48,6 +53,23 @@ const AnswerButton = ({
 							: lockedAnswers.find((value) => value === AnswerNumber)
 							? 'grey'
 							: 'white',
+
+					color:
+						parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
+							? 'white' //green color
+							: showCorrect &&
+							  SelectedAnswerNumber === AnswerNumber &&
+							  AnswerNumber === CorrectAnswer
+							? 'white' //green color
+							: showCorrect &&
+							  SelectedAnswerNumber === AnswerNumber &&
+							  AnswerNumber !== CorrectAnswer
+							? 'white'
+							: !showCorrect && SelectedAnswerNumber === AnswerNumber
+							? 'white' //brown color
+							: lockedAnswers.find((value) => value === AnswerNumber)
+							? 'white'
+							: 'black',
 				}}
 			>
 				<strong className=' text-1xl capitalize'>

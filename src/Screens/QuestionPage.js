@@ -47,6 +47,9 @@ const QuestionPage = () => {
 				setSelectedAnswerNumber(null)
 			} else {
 				setTriesAvailable(triesAvailable - 1)
+				if (selectedAnswerNumber === QuestionData.answer) {
+					alert('success')
+				}
 			}
 		}
 	}

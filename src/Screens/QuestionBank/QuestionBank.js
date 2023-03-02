@@ -8,6 +8,7 @@ import { Button } from '@mui/material'
 
 function QuestionBank() {
 	const { round } = useParams()
+
 	return (
 		<div
 			className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
