@@ -7,6 +7,7 @@ const AnswerButton = ({
 	AnswerNumber = 0,
 	CorrectAnswer = 1,
 	SelectedAnswerNumber,
+	lockedAnswers,
 	showCorrect = false,
 	triesAvailable,
 	onClick,
@@ -46,6 +47,8 @@ const AnswerButton = ({
 							? 'red'
 							: !showCorrect && SelectedAnswerNumber === AnswerNumber
 							? '#E4A11B' //brown color
+							: lockedAnswers.find((value) => value === AnswerNumber)
+							? 'grey'
 							: 'white',
 				}}
 			>

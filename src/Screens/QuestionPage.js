@@ -21,8 +21,9 @@ const QuestionPage = () => {
 	const [openTimer, setOpenTimer] = useState(false)
 	const [showCorrect, setShowCorrect] = useState(false)
 	const [triesAvailable, setTriesAvailable] = useState(2)
+	const [lockedAnswers, setLockedAnswers] = useState([])
 	const [progress, setProgress] = useState(0)
-	const childRef = useRef();
+	const childRef = useRef()
 
 	const navigate = useNavigate()
 
@@ -32,7 +33,7 @@ const QuestionPage = () => {
 		setQuestionData(data[QId - 1])
 	}
 	useEffect(() => {
-		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(2)
+		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(1)
 
 		getData()
 	}, [QId])
@@ -42,6 +43,8 @@ const QuestionPage = () => {
 			setShowCorrect(!showCorrect)
 			if (showCorrect) {
 				setTriesAvailable(triesAvailable - 1)
+				const array = [...lockedAnswers, selectedAnswerNumber]
+				setLockedAnswers(array)
 			}
 
 			data[QId - 1].viewed = true
@@ -55,10 +58,8 @@ const QuestionPage = () => {
 		if (triesAvailable < 1) {
 			resetState()
 			data[QId - 1].viewed = true
-			
 		}
 		navigate(`/questionbank/${round}`)
-		
 	}
 
 	const HandleSwitchButtonClick = async () => {
@@ -74,6 +75,7 @@ const QuestionPage = () => {
 		setOpenTimer(false)
 		setShowCorrect(false)
 		setSelectedAnswerNumber(null)
+		setLockedAnswers([])
 	}
 
 	// console.log(QuestionData)
@@ -97,9 +99,10 @@ const QuestionPage = () => {
 				textAlign={'center'}
 				alignContent={'center'}
 				maxWidth
-
 			>
-				{ (QuestionData && QuestionData.image) && <img width={350}  src={QuestionData.image} alt='image' />}
+				{QuestionData && QuestionData.image && (
+					<img width={350} src={QuestionData.image} alt='image' />
+				)}
 			</Grid>
 			<Grid
 				container
@@ -121,11 +124,11 @@ const QuestionPage = () => {
 								showCorrect={showCorrect}
 								CorrectAnswer={QuestionData.answer}
 								SelectedAnswerNumber={selectedAnswerNumber}
+								lockedAnswers={lockedAnswers}
 								onClick={() => {
 									// console.log('clicked')
-									childRef.current.StopTheWatch();
-									setSelectedAnswerNumber(index + 1);
-									
+									childRef.current.StopTheWatch()
+									setSelectedAnswerNumber(index + 1)
 								}}
 							/>
 						)
