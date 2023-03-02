@@ -42,12 +42,12 @@ const QuestionPage = () => {
 		if (selectedAnswerNumber) {
 			setShowCorrect(!showCorrect)
 			if (showCorrect) {
-				setTriesAvailable(triesAvailable - 1)
 				const array = [...lockedAnswers, selectedAnswerNumber]
 				setLockedAnswers(array)
+				setSelectedAnswerNumber(null)
+			} else {
+				setTriesAvailable(triesAvailable - 1)
 			}
-
-			data[QId - 1].viewed = true
 		}
 	}
 
