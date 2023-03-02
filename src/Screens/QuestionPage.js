@@ -4,7 +4,7 @@ import BottomControlBar from '../Components/BottomControlBar'
 import QuestionView from '../Components/QuestionView'
 import data from '../data.json'
 // import image from '/img/image.jpg';
-import Image from '../images/cover2.jpeg'
+import Image from '../images/hwts.jpg'
 import { useNavigate, useParams } from 'react-router'
 import { Grid } from '@mui/material'
 import TimerButton from '../Components/TimerButton'
@@ -13,6 +13,7 @@ import NextButton from '../Components/NextButton'
 import cover from '../images/loop2.mp4'
 import Timer from '../Components/Timer'
 import SwitchButton from '../Components/SwitchButton'
+import './HomeScreen/HomeScreen.css'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
@@ -87,12 +88,13 @@ const QuestionPage = () => {
 			container
 			style={{
 				height: '100vh',
-				backgroundImage: `url(${Image})`,
-				backgroundRepeat: false,
+				// backgroundImage: `url(${Image})`,
+				// backgroundRepeat: false,
 				alignContent: 'space-between',
 			}}
-			className=' bg-cover'
+			className='home-container '
 		>
+			<video src={cover} autoPlay loop muted />
 			<Grid container className=' p-2 text-center'>
 				<Timer ref={childRef} />
 			</Grid>
@@ -104,7 +106,12 @@ const QuestionPage = () => {
 				maxWidth
 			>
 				{QuestionData && QuestionData.image && (
-					<img width={350} src={QuestionData.image} alt='image' />
+					<img
+						width={370}
+						className=' border-white border-2'
+						src={QuestionData.image}
+						alt='image'
+					/>
 				)}
 			</Grid>
 			<Grid

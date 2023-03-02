@@ -1,4 +1,5 @@
 import { Button, Grid } from '@mui/material'
+import { Box } from '@mui/system'
 import React, { useState } from 'react'
 import { useParams } from 'react-router'
 
@@ -33,6 +34,7 @@ const AnswerButton = ({
 	}
 	return (
 		<Grid item sm={6} onClick={inSideClickHandle}>
+			<Box boxShadow={2} >
 			<Button
 				variant='contained'
 				sx={{
@@ -71,11 +73,17 @@ const AnswerButton = ({
 							? 'white'
 							: 'black',
 				}}
+				
 			>
-				<strong className=' text-1xl capitalize'>
-					[ {AnswerNumber} ] {Answer}
-				</strong>
+			<div className=' relative flex '>
+				<div className=' absolute float-left top-6 left-0 mr-6 h-6 w-6 rounded-full bg-blue-500 flex items-center align-middle justify-center'><span className=' text-white text-sm font-medium text-center'>{AnswerNumber}. </span></div>
+				<div className=' text-2xl float-right capitalize text-left ml-8'><p className=' text-black font-semibold'>{Answer}</p></div>
+			</div>
+				{/* <strong >
+					
+				</strong> */}
 			</Button>
+			</Box>
 		</Grid>
 	)
 }
