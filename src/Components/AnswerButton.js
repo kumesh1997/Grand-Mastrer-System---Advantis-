@@ -24,7 +24,8 @@ const AnswerButton = ({
 		height: '110px',
 		opacity: '0.9',
 		borderRadius: 50,
-		color: 'black',
+		display: 'flex',
+		// color: 'black',
 		fontWeight: 400,
 		fontSize: '1.2em',
 		'&:hover': {
@@ -32,57 +33,41 @@ const AnswerButton = ({
 			color: 'black',
 		},
 	}
+	const conditionalCss =
+		parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
+			? { backgroundColor: '#075716', color: 'white' } //green color
+			: showCorrect &&
+			  SelectedAnswerNumber === AnswerNumber &&
+			  AnswerNumber === CorrectAnswer
+			? { backgroundColor: '#075716', color: 'white' } //green color
+			: showCorrect &&
+			  SelectedAnswerNumber === AnswerNumber &&
+			  AnswerNumber !== CorrectAnswer
+			? { backgroundColor: 'red', color: 'white' }
+			: !showCorrect && SelectedAnswerNumber === AnswerNumber
+			? { color: '#ffffff ', backgroundColor: '#E4A11B' } //brown color
+			: lockedAnswers.find((value) => value === AnswerNumber)
+			? { backgroundColor: 'grey', color: 'white' }
+			: { backgroundColor: 'white', color: 'black' }
 	return (
 		<Grid item sm={6} onClick={inSideClickHandle}>
-			<Box boxShadow={2} >
-			<Button
-				variant='contained'
-				sx={{
-					...buttonCommonCss,
-					backgroundColor:
-						parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
-							? '#075716' //green color
-							: showCorrect &&
-							  SelectedAnswerNumber === AnswerNumber &&
-							  AnswerNumber === CorrectAnswer
-							? '#075716' //green color
-							: showCorrect &&
-							  SelectedAnswerNumber === AnswerNumber &&
-							  AnswerNumber !== CorrectAnswer
-							? 'red'
-							: !showCorrect && SelectedAnswerNumber === AnswerNumber
-							? '#E4A11B' //brown color
-							: lockedAnswers.find((value) => value === AnswerNumber)
-							? 'grey'
-							: 'white',
+			<Box boxShadow={2}>
+				<Button
+					variant='contained'
+					sx={{
+						...conditionalCss,
+						...buttonCommonCss,
+					}}
+				>
+					<p style={{ width: 20 }} className=' text-black  font-medium  '>
+						{AnswerNumber}.{' '}
+					</p>
+					<p className=' font-semibold text-start'>{Answer}</p>
 
-					color:
-						parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
-							? 'white' //green color
-							: showCorrect &&
-							  SelectedAnswerNumber === AnswerNumber &&
-							  AnswerNumber === CorrectAnswer
-							? 'white' //green color
-							: showCorrect &&
-							  SelectedAnswerNumber === AnswerNumber &&
-							  AnswerNumber !== CorrectAnswer
-							? 'white'
-							: !showCorrect && SelectedAnswerNumber === AnswerNumber
-							? 'white' //brown color
-							: lockedAnswers.find((value) => value === AnswerNumber)
-							? 'white'
-							: 'black',
-				}}
-				
-			>
-			<div className=' relative flex '>
-				<div className=' absolute float-left top-6 left-0 mr-6 h-6 w-6 rounded-full bg-blue-500 flex items-center align-middle justify-center'><span className=' text-white text-sm font-medium text-center'>{AnswerNumber}. </span></div>
-				<div className=' text-2xl float-right capitalize text-left ml-8'><p className=' text-black font-semibold'>{Answer}</p></div>
-			</div>
-				{/* <strong >
+					{/* <strong >
 					
 				</strong> */}
-			</Button>
+				</Button>
 			</Box>
 		</Grid>
 	)
