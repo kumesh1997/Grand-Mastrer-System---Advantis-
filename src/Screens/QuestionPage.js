@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import AnswerButton from '../Components/AnswerButton'
 import BottomControlBar from '../Components/BottomControlBar'
 import QuestionView from '../Components/QuestionView'
@@ -16,74 +16,67 @@ import SwitchButton from '../Components/SwitchButton'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
-
-	const [DummyState, setDummyState] = useState()
 	const [QuestionData, setQuestionData] = useState()
 	const [selectedAnswerNumber, setSelectedAnswerNumber] = useState()
 	const [openTimer, setOpenTimer] = useState(false)
-	const [correct, setCorrect] = useState(false)
+	const [showCorrect, setShowCorrect] = useState(false)
+	const [triesAvailable, setTriesAvailable] = useState(2)
 	const [progress, setProgress] = useState(0)
+	const childRef = useRef();
 
 	const navigate = useNavigate()
 
 	let nextPage = parseInt(QId) + 1
-	let reviewAnswer = false
 
 	const getData = () => {
 		setQuestionData(data[QId - 1])
-		setCorrect(data[QId - 1].answer);
 	}
-	console.log(selectedAnswerNumber)
-	React.useEffect(() => {
-		getData()
-		// const timer = setInterval(() => {
-		// 	setProgress((prevProgress) =>
-		// 		prevProgress >= 100 ? 1 : prevProgress + 1
-		// 	)
-		// }, 100)
+	useEffect(() => {
+		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(2)
 
-		// return () => {
-		// 	clearInterval(timer)
-		// }
-	}, [reviewAnswer])
+		getData()
+	}, [QId])
 
 	const HandleAnswerButtonClick = async () => {
-		if (selectedAnswerNumber === QuestionData.answer) {
-			// setCorrect(true);
-			reviewAnswer = true
-			console.log('Your Answer is True')
-			alert('Your Answer is True')
-		} else {
-			// setCorrect(false);
-			reviewAnswer = false
-			console.log('Your Answer is False')
-			alert('Your Answer is False')
-		}
-		setDummyState(Math.random())
-		console.log(reviewAnswer)
-		await data.map((item, index) => {
-			if(item.id === parseInt(QId)){
-				item.viewed=true;
+		if (selectedAnswerNumber) {
+			setShowCorrect(!showCorrect)
+			if (showCorrect) {
+				setTriesAvailable(triesAvailable - 1)
 			}
-		});
+
+			data[QId - 1].viewed = true
+		}
 	}
 
 	const HandleTimerButtonClick = () => {
 		setOpenTimer(!openTimer)
 	}
-
 	const HandleNextButtonClick = () => {
+		if (triesAvailable < 1) {
+			resetState()
+			data[QId - 1].viewed = true
+			
+		}
 		navigate(`/questionbank/${round}`)
+		
 	}
 
 	const HandleSwitchButtonClick = async () => {
-		await data.map((item, index) => {
-			if(item.id === parseInt(QId)){
-				item.viewed=true;
+		data.map((item, index) => {
+			if (item.id === parseInt(QId)) {
+				item.viewed = true
 			}
-		});
+		})
 		navigate(`/questionbank/${round}`)
 	}
+	const resetState = () => {
+		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(1)
+		setOpenTimer(false)
+		setShowCorrect(false)
+		setSelectedAnswerNumber(null)
+	}
+
+	// console.log(QuestionData)
 	return (
 		<Grid
 			container
@@ -91,11 +84,22 @@ const QuestionPage = () => {
 				height: '100vh',
 				backgroundImage: `url(${Image})`,
 				backgroundRepeat: false,
+				alignContent: 'space-between',
 			}}
 			className=' bg-cover'
 		>
 			<Grid container className=' p-2 text-center'>
-				<Timer /> 
+				<Timer ref={childRef} />
+			</Grid>
+			<Grid
+				container
+				justifyContent={'center'}
+				textAlign={'center'}
+				alignContent={'center'}
+				maxWidth
+
+			>
+				{ (QuestionData && QuestionData.image) && <img width={350}  src={QuestionData.image} alt='image' />}
 			</Grid>
 			<Grid
 				container
@@ -106,6 +110,7 @@ const QuestionPage = () => {
 				{QuestionData && <QuestionView Question={QuestionData.question} />}
 			</Grid>
 			<Grid container spacing={4} textAlign={'center'} alignContent={'center'}>
+			<Grid container spacing={4} textAlign={'center'} alignContent={'center'}>
 				{QuestionData &&
 					QuestionData.answers.map((item, index) => {
 						return (
@@ -113,24 +118,34 @@ const QuestionPage = () => {
 								key={index}
 								AnswerNumber={index + 1}
 								Answer={item}
+								triesAvailable={triesAvailable}
+								showCorrect={showCorrect}
 								CorrectAnswer={QuestionData.answer}
-								Selected={selectedAnswerNumber}
-								reviewAnswer={reviewAnswer}
+								SelectedAnswerNumber={selectedAnswerNumber}
 								onClick={() => {
 									// console.log('clicked')
-									setSelectedAnswerNumber(index + 1)
+									childRef.current.StopTheWatch();
+									setSelectedAnswerNumber(index + 1);
+									
 								}}
 							/>
 						)
 					})}
 			</Grid>
 			<Grid container justifyContent={'flex-end'}>
-				{ parseInt(round) === 3 && <SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />}
+				{parseInt(round) === 3 && (
+					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
+				)}
 				{/* <TimerButton OnClickHandler={() => HandleTimerButtonClick()} /> */}
 				<CorrectAnswersButton
+					showCorrect={showCorrect}
 					OnClickHandler={() => HandleAnswerButtonClick()}
 				/>
-				<NextButton OnClickHandler={() => HandleNextButtonClick()} />
+				{parseInt(QId) !== data.length ? (
+					<NextButton OnClickHandler={() => HandleNextButtonClick()} />
+				) : (
+					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
+				)}
 			</Grid>
 		</Grid>
 	)

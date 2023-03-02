@@ -6,7 +6,7 @@ const QuestionView = ({
 	return (
 		<div
 			className=' bg-white text-center rounded-md opacity-80'
-			style={{ width: '78%', paddingTop: 30, paddingBottom: 30, paddingLeft: 20, paddingRight: 20 }}
+			style={{ width: '95%', paddingTop: 30, paddingBottom: 30, paddingLeft: 30, paddingRight: 30 }}
 		>
 			<h3 className=' text-2xl leading-9 tracking-wide text-justify font-semibold'>{Question} </h3>
 		</div>
