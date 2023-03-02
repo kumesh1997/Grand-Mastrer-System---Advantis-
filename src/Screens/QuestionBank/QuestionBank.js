@@ -10,13 +10,13 @@ function QuestionBank() {
 	const { round } = useParams()
 	return (
 		<div
-			className=' text-start fixed min-h-full min-w-full bg-cover '
+			className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
 			style={{
 				backgroundImage: `url(${Image})`,
 				backgroundRepeat: false,
 			}}
 		>
-			<div class='grid-container overflow-y-auto'>
+			<div class='grid-container'>
 				{data.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>

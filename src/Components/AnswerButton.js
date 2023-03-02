@@ -18,8 +18,8 @@ const AnswerButton = ({
 	}
 
 	const buttonCommonCss = {
-		width: '400px',
-		height: '50px',
+		width: '95%',
+		height: '110px',
 		opacity: '0.9',
 		borderRadius: 50,
 		color: 'black',
@@ -49,7 +49,7 @@ const AnswerButton = ({
 							: 'white',
 				}}
 			>
-				<strong>
+				<strong className=' text-1xl capitalize'>
 					[ {AnswerNumber} ] {Answer}
 				</strong>
 			</Button>

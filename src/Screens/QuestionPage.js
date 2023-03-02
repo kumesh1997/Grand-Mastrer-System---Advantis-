@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import AnswerButton from '../Components/AnswerButton'
 import BottomControlBar from '../Components/BottomControlBar'
 import QuestionView from '../Components/QuestionView'
@@ -22,6 +22,7 @@ const QuestionPage = () => {
 	const [showCorrect, setShowCorrect] = useState(false)
 	const [triesAvailable, setTriesAvailable] = useState(2)
 	const [progress, setProgress] = useState(0)
+	const childRef = useRef();
 
 	const navigate = useNavigate()
 
@@ -74,6 +75,8 @@ const QuestionPage = () => {
 		setShowCorrect(false)
 		setSelectedAnswerNumber(null)
 	}
+
+	// console.log(QuestionData)
 	return (
 		<Grid
 			container
@@ -86,7 +89,7 @@ const QuestionPage = () => {
 			className=' bg-cover'
 		>
 			<Grid container className=' p-2 text-center'>
-				<Timer />
+				<Timer ref={childRef} />
 			</Grid>
 			<Grid
 				container
@@ -96,7 +99,7 @@ const QuestionPage = () => {
 				maxWidth
 
 			>
-				<img width={350}  src={`https://res.cloudinary.com/dshnw5ade/image/upload/v1677679650/hoxkidv0yq5w7ewxqcfp.jpg`} alt='image' />
+				{ (QuestionData && QuestionData.image) && <img width={350}  src={QuestionData.image} alt='image' />}
 			</Grid>
 			<Grid
 				container
@@ -120,7 +123,9 @@ const QuestionPage = () => {
 								SelectedAnswerNumber={selectedAnswerNumber}
 								onClick={() => {
 									// console.log('clicked')
-									setSelectedAnswerNumber(index + 1)
+									childRef.current.StopTheWatch();
+									setSelectedAnswerNumber(index + 1);
+									
 								}}
 							/>
 						)
