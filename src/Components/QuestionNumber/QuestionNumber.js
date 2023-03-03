@@ -1,30 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import './QuestionNumber.css'
-import hufflepuff from '../../images/hufflepuff.gif'
-import snitch from '../../images/snitch.gif';
+
+import snitch from '../../images/snitch.gif'
 import { Button, Modal } from 'antd'
 
-function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
-	const navigate = useNavigate()
-	const [open, setOpen] = useState(false)
-	const showModal = () => {
-		setOpen(true)
-	}
-	const handleOk = () => {
-		setOpen(false)
-		navigate(`/question/${round}/${QuestionNumber}`)
-	}
-	const handleCancel = () => {
-		setOpen(false)
-	}
-	const handleClick = () => {
-		if (parseInt(round) === 3) {
-			showModal()
-		} else {
-			navigate(`/question/${round}/${QuestionNumber}`)
-		}
-	}
+function QuestionNumber({ QuestionNumber = 1, viewed = false, handleClick }) {
 	let css
 	if (parseInt(QuestionNumber) % 5 === 1) {
 		css = viewed
@@ -37,7 +18,12 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 	}
 
 	return (
-		<div className={css} onClick={handleClick}>
+		<div
+			className={css}
+			onClick={() => {
+				handleClick(QuestionNumber)
+			}}
+		>
 			<div className={'number text-white cursor-pointer'}>
 				{viewed ? (
 					<label>
@@ -50,28 +36,6 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 					<label>{QuestionNumber}</label>
 				)}
 			</div>
-			<Modal
-				open={open}
-				onOk={handleOk}
-				onCancel={handleCancel}
-				footer={[
-					<>
-						<Button key='submit' onClick={handleOk}>
-							Go To Question
-						</Button>
-						<Button key='submit' onClick={handleCancel}>
-							Close
-						</Button>
-					</>,
-				]}
-			>
-			<div className=' flex justify-evenly align-middle'>
-				<span><h2 style={{ color: 'black' }}>Question {QuestionNumber}</h2></span>
-				<span><img width={200} src={hufflepuff} alt='image' /></span>
-			</div>
-			
-				
-			</Modal>
 		</div>
 	)
 }
