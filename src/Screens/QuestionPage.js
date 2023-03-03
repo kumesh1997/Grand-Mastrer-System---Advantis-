@@ -3,6 +3,7 @@ import AnswerButton from '../Components/AnswerButton'
 import BottomControlBar from '../Components/BottomControlBar'
 import QuestionView from '../Components/QuestionView'
 import data from '../data.json'
+import round3 from '../round3.json'
 // import image from '/img/image.jpg';
 import Image from '../images/hwts.jpg'
 import { useNavigate, useParams } from 'react-router'
@@ -30,6 +31,7 @@ const QuestionPage = () => {
 
 	const navigate = useNavigate()
 	const [open, setOpen] = useState(false)
+	const QuestionBank = parseInt(round) ===3 ? round3 : data;
 
 	// Close Model
 	const showModal = () => {
@@ -47,7 +49,7 @@ const QuestionPage = () => {
 	let nextPage = parseInt(QId) + 1
 
 	const getData = () => {
-		setQuestionData(data[QId - 1])
+		setQuestionData(QuestionBank[QId - 1])
 	}
 	useEffect(() => {
 		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(1)
@@ -170,7 +172,7 @@ const QuestionPage = () => {
 					showCorrect={showCorrect}
 					OnClickHandler={() => HandleAnswerButtonClick()}
 				/>
-				{parseInt(QId) !== data.length ? (
+				{parseInt(QId) !== QuestionBank.length ? (
 					<NextButton OnClickHandler={() => HandleNextButtonClick()} />
 				) : (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
