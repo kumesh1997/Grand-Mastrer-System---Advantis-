@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import './QuestionNumber.css'
-import hufflepuff from '../../images/hufflepuff.gif'
-import snitch from '../../images/snitch.gif';
+
+import snitch from '../../images/snitch.gif'
 import { Button, Modal } from 'antd'
 import next from '../../images/next.gif'
 
@@ -57,7 +57,12 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 	  }, [open]);
 
 	return (
-		<div className={css} onClick={handleClick}>
+		<div
+			className={css}
+			onClick={() => {
+				handleClick(QuestionNumber)
+			}}
+		>
 			<div className={'number text-white cursor-pointer'}>
 				{viewed ? (
 					<label>
@@ -70,34 +75,30 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 					<label>{QuestionNumber}</label>
 				)}
 			</div>
-
-
-			{/* Model */}
 			<Modal
-				onClick={handleOk}
 				open={open}
 				onOk={handleOk}
 				onCancel={handleCancel}
 				footer={[
 					<>
-						<div  onClick={handleOk} className=' flex justify-center cursor-pointer'>
-							<img width={200} src={next} alt='image' />
-						</div>
-						{/* <Button key='submit' onClick={handleCancel}>
+						<Button key='submit' onClick={handleOk}>
+							Go To Question
+						</Button>
+						<Button key='submit' onClick={handleCancel}>
 							Close
-						</Button> */}
+						</Button>
 					</>,
 				]}
 			>
-			<div className=' flex items-center justify-center'>
-				<span><h2 style={{ color: '#433528', fontSize: '30px', fontWeight: '900', fontFamily: 'cursive' }}>Question {QuestionNumber}</h2></span>
-				<span className=' flex items-center justify-center'><img width={180} src={hufflepuff} alt='image' /></span>
+			<div className=' flex justify-evenly align-middle'>
+				<span><h2 style={{ color: 'black' }}>Question {QuestionNumber}</h2></span>
+				<span><img width={200} src={hufflepuff} alt='image' /></span>
 			</div>
 			
 				
 			</Modal>
 		</div>
-	)
+	);
 }
 
-export default QuestionNumber
+export default QuestionNumber;
