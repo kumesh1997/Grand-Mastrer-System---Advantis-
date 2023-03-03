@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import './QuestionNumber.css'
-
+import cross from '../../images/cross.png'
 import snitch from '../../images/snitch.gif'
 import { Button, Modal } from 'antd'
 import next from '../../images/next.gif'
@@ -33,7 +33,7 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 		}
 	}
 	let css
-	if (parseInt(QuestionNumber) % 5 === 1) {
+	if (parseInt(QuestionNumber) % 3 === 1) {
 		css = viewed
 			? 'pointer-events-none test2'
 			: ' test2 cursor-pointer duration-75 active:scale-95'
@@ -54,13 +54,13 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 			<div className={'number text-white cursor-pointer'}>
 				{viewed ? (
 					<label>
-						{QuestionNumber}{' '}
-						<span className=' text-4xl absolute top-0 left-0 text-red-600'>
-							X
+						<span>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</span>
+						<span className=' absolute w- top-1 left-0 text-red-600'>
+							<img width={100}  src={cross} alt='image' />
 						</span>{' '}
 					</label>
 				) : (
-					<label>{QuestionNumber}</label>
+					<label>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</label>
 				)}
 			</div>
 			<Modal
@@ -72,9 +72,6 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 						<div onClick={handleOk} className=' flex justify-center items-center'>
 							<img width={200} src={next} alt="image" />
 						</div>
-						{/* <Button key='submit' onClick={handleCancel}>
-							Close
-						</Button> */}
 					</>,
 				]}
 			>
