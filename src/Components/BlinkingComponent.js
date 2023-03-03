@@ -17,10 +17,14 @@ const BlinkingComponent = ({ QuestionNumber = 1, round = 1, viewed = false }) =>
 	const showModal = () => {
 		setOpen(true)
 	}
+
+
 	const handleOk = () => {
 		setOpen(false)
 		navigate(`/question/${round}/${QuestionNumber}`)
 	}
+
+
 	const handleCancel = () => {
 		setOpen(false)
 	}
@@ -32,6 +36,7 @@ const BlinkingComponent = ({ QuestionNumber = 1, round = 1, viewed = false }) =>
 			navigate(`/question/${round}/${QuestionNumber}`)
 		}
 	}
+
 	let css
 	if (parseInt(QuestionNumber) % 3 === 1) {
 		css = viewed
@@ -51,18 +56,20 @@ const BlinkingComponent = ({ QuestionNumber = 1, round = 1, viewed = false }) =>
 			}}
 		>
             {/* Ball */}
-			<div className={'btn third rounded-full'}>
+			<div className={'btn third w-16 rounded-full flex justify-evenly'}>
 				{viewed ? (
-					<label className='relative text-white'>
-						<span className=''>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</span>
-						<span className=' absolute left-0 top-0'>
-							<img  src={cross} alt='image' />
+					<label className='relative text-white text-xl'>
+						<span className=' w-10'>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</span>
+						<span className=' absolute left-0 top-0 w-8'>
+							<img src={cross} alt='image' />
 						</span>
 					</label>
 				) : (
-					<label className=' text-white'>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</label>
+					<label className=' text-white text-xl'>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</label>
 				)}
 			</div>
+
+			{/* Modal */}
 			<Modal
 				open={open}
 				onOk={handleOk}

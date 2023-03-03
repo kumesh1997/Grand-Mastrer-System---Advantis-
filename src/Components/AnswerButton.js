@@ -14,6 +14,7 @@ const AnswerButton = ({
 	onClick,
 }) => {
 	const [buttonClicked, setButtonClicked] = useState(false)
+
 	const inSideClickHandle = () => {
 		onClick()
 	}
@@ -84,7 +85,7 @@ const AnswerButton = ({
 						...conditionalCss,
 						...buttonCommonCss,
 					}}
-				>
+				>	
 					<p
 						style={{ width: 20 }}
 						className=' bg-blue-900 text-white rounded-full font-medium flex items-center align-middle justify-center h-6 w-6 '
@@ -92,11 +93,6 @@ const AnswerButton = ({
 						{AnswerNumber}.{' '}
 					</p>
 					<p className=' font-semibold text-start '>{Answer}</p>
-
-					{/* <div className=' relative flex '>
-				<div className=' absolute float-left top-6 left-0 mr-6 h-6 w-6 rounded-full bg-blue-500 flex items-center align-middle justify-center'><span className=' text-white text-sm font-medium text-center'>{AnswerNumber}. </span></div>
-				<div className=' text-2xl float-right capitalize text-left ml-8'><p className=' text-black font-semibold'>{Answer}</p></div>
-			</div> */}
 				</Button>
 			</Box>
 		</Grid>

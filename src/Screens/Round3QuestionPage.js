@@ -19,19 +19,29 @@ const Round3QuestionPage = () => {
 	
 	const [open, setOpen] = useState(false)
 	const [questionNumber, setQuestionNumber] = useState()
+	
+	
 	const showModal = () => {
 		setOpen(true)
 	}
+	
+	
 	const setQuestion = (Number) => {
 		setQuestionNumber(Number)
 	}
+	
+	
 	const handleOk = () => {
 		setOpen(false)
 		navigate(`/question/${round}/${questionNumber}`)
 	}
+	
+	
 	const handleCancel = () => {
 		setOpen(false)
 	}
+
+
 	const handleClick = (Number) => {
 		setQuestion(Number)
 		if (parseInt(round) === 3) {

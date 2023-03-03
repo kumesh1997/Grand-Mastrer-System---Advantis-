@@ -45,27 +45,29 @@ const QuestionPage = () => {
 		setOpen(false)
 	}
 
+	// Find the Relevant Question
 	const getData = () => {
 		setQuestionData(QuestionBank[QId - 1])
 	}
+
 	useEffect(() => {
 		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(1)
 		getData()
 	}, [QId])
 
-	useEffect(() => {
-		let timeout
+	// useEffect(() => {
+	// 	let timeout
 
-		if (open) {
-			timeout = setTimeout(() => {
-				setOpen(false)
-			}, 3000)
-		}
+	// 	if (open) {
+	// 		timeout = setTimeout(() => {
+	// 			setOpen(false)
+	// 		}, 3000)
+	// 	}
 
-		return () => {
-			clearTimeout(timeout)
-		}
-	}, [open])
+	// 	return () => {
+	// 		clearTimeout(timeout)
+	// 	}
+	// }, [open])
 
 	const HandleTimerButtonClick = () => {
 		setOpenTimer(!openTimer)
@@ -92,6 +94,9 @@ const QuestionPage = () => {
 		if (triesAvailable < 1) {
 			resetState()
 			QuestionBank[QId - 1].viewed = true
+		}else if(parseInt(round) === 3 && triesAvailable < 2 && selectedAnswerNumber === QuestionData.answer){
+			resetState()
+			QuestionBank[QId - 1].viewed = true
 		}
 
 		parseInt(round) === 3
@@ -105,7 +110,9 @@ const QuestionPage = () => {
 				item.viewed = true
 			}
 		})
-		navigate(`/questionbank_Round/${round}`)
+		parseInt(round) === 1
+		? navigate(`/questionbank/${round}`)
+		: navigate(`/questionbank_Round/${round}`)
 	}
 	const resetState = () => {
 		parseInt(round) === 1 ? setTriesAvailable(2) : setTriesAvailable(1)
