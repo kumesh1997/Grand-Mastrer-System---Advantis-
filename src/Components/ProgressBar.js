@@ -45,7 +45,7 @@ function ProgressBar() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <LinearProgress value={progress}  />
+      <LinearProgress value={progress} variant='determinate'  />
     </Box>
   )
 }

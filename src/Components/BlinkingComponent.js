@@ -35,17 +35,17 @@ const BlinkingComponent = ({ QuestionNumber = 1, round = 1, viewed = false }) =>
 	let css
 	if (parseInt(QuestionNumber) % 3 === 1) {
 		css = viewed
-			? 'pointer-events-none test2'
-			: ' test2 cursor-pointer duration-75 active:scale-95'
+			? 'pointer-events-none bg-opacity-70'
+			: 'cursor-pointer duration-75 active:scale-95'
 	} else {
 		css = viewed
-			? 'pointer-events-none test'
-			: ' test cursor-pointer duration-75 active:scale-95'
+			? 'pointer-events-none bg-opacity-70'
+			: 'cursor-pointer duration-75 active:scale-95'
 	}
 
   return (
     <div
-			className={""}
+			className={css}
 			onClick={() => {
 				handleClick(QuestionNumber)
 			}}
@@ -53,14 +53,14 @@ const BlinkingComponent = ({ QuestionNumber = 1, round = 1, viewed = false }) =>
             {/* Ball */}
 			<div className={'btn third rounded-full'}>
 				{viewed ? (
-					<label>
-						<span>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</span>
-						<span className=' absolute w- top-1 left-0 text-red-600'>
-							<img width={100}  src={cross} alt='image' />
-						</span>{' '}
+					<label className='relative text-white'>
+						<span className=''>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</span>
+						<span className=' absolute left-0 top-0'>
+							<img  src={cross} alt='image' />
+						</span>
 					</label>
 				) : (
-					<label>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</label>
+					<label className=' text-white'>{parseInt(QuestionNumber)<10? "0"+QuestionNumber : QuestionNumber}</label>
 				)}
 			</div>
 			<Modal
