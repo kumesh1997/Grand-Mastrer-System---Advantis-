@@ -8,6 +8,7 @@ import Image from '../images/hp.jpg'
 import { useNavigate, useParams } from 'react-router'
 import { Button } from '@mui/material'
 import { Modal } from 'antd'
+import BlinkingComponent from '../Components/BlinkingComponent'
 
 const Round3QuestionPage = () => {
 
@@ -52,7 +53,7 @@ const Round3QuestionPage = () => {
 				{  dataset.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>
-							<QuestionNumber
+							<BlinkingComponent
 								viewed={item.viewed}
 								QuestionNumber={item.id}
 								round={round}

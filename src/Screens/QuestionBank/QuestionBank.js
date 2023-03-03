@@ -8,6 +8,7 @@ import Image from '../../images/cover.jpg'
 import { useNavigate, useParams } from 'react-router'
 import { Button } from '@mui/material'
 import { Modal } from 'antd'
+import BlinkingComponent from '../../Components/BlinkingComponent'
 
 function QuestionBank() {
 	const { round } = useParams()
@@ -59,6 +60,8 @@ function QuestionBank() {
 					)
 				})}
 			</div>
+
+			
 			<Modal
 				open={open}
 				onOk={handleOk}

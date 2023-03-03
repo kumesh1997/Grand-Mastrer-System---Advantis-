@@ -49,7 +49,7 @@
 	}
 }
 
-label {
+.number label {
 	margin-top: 5%;
 	font-weight: bolder;
 	transform: rotate(-15deg) translateY(0);

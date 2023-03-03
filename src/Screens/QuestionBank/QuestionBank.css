@@ -12,7 +12,7 @@
 .grid-container-round3 {
   display: grid;
   background-color: rgba(48, 46, 46, 0.6);
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto ;
   /* background-color: #2196f3; */
   padding: 10px;
   width: 100%;
