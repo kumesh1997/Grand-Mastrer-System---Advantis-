@@ -76,7 +76,8 @@ const Timer = forwardRef(({}, ref) => {
             >
                 <h2 
                     className={ seconds<10? 'text-red-600' 
-                    : 'text-white'}>{minutes<10? "0"+ minutes : minutes} : {seconds<10? "0"+seconds : seconds}
+                    : 'text-white'}>
+                    {minutes<10? "0"+ minutes : minutes} : {seconds<10? "0"+seconds : seconds}
                 </h2>
                 <button className=' bg-green-600 p-2 rounded-md mt-1 w-full text-lg' onClick={ClickHandle}>{clicked === 0 ? 'Start' : 'Pause' }</button>
                 {/* <button onClick={Stop}>Stop</button> */}
