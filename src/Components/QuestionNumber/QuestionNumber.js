@@ -4,6 +4,8 @@ import snitch from '../../images/snitch.gif'
 import { Button, Modal } from 'antd'
 import next from '../../images/next.gif'
 import hufflepuff from '../../images/hufflepuff.gif'
+import { useNavigate } from 'react-router'
+import { useState } from 'react'
 
 function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 	const navigate = useNavigate()

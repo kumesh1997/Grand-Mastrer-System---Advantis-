@@ -48,7 +48,7 @@ function QuestionBank() {
 			}}
 		>
 			<div class='grid-container-round1'>
-				{  dataset.map((item, index) => {
+				{dataset.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>
 							<QuestionNumber
@@ -84,7 +84,7 @@ function QuestionBank() {
 					</span>
 				</div>
 			</Modal>
-		</>
+		</div>
 	)
 }
 
