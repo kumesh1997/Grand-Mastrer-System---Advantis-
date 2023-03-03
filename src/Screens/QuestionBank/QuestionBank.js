@@ -4,6 +4,7 @@ import hufflepuff from '../../images/hufflepuff.gif'
 import './QuestionBank.css'
 import data from '../../data.json'
 import round3 from '../../round3.json'
+import next from '../../images/next.gif'
 import Image from '../../images/cover.jpg'
 import { useNavigate, useParams } from 'react-router'
 import { Button } from '@mui/material'
@@ -13,8 +14,8 @@ function QuestionBank() {
 	const { round } = useParams()
 	const navigate = useNavigate()
 
-	const dataset = parseInt(round) === 3? round3: data;
-	
+	const dataset = parseInt(round) === 3 ? round3 : data
+
 	const [open, setOpen] = useState(false)
 	const [questionNumber, setQuestionNumber] = useState()
 	const showModal = () => {
@@ -39,25 +40,51 @@ function QuestionBank() {
 		}
 	}
 	return (
-		<div
-			className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
-			style={{
-				backgroundImage: `url(${Image})`,
-				backgroundRepeat: false,
-			}}
-		>
-			<div class='grid-container-round3'>
-				{  dataset.map((item, index) => {
-					return (
-						<div class='grid-item' key={index}>
-							<QuestionNumber
-								viewed={item.viewed}
-								QuestionNumber={item.id}
-								round={round}
-							/>
-						</div>
-					)
-				})}
+		<>
+			<div
+				className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
+				style={{
+					backgroundImage: `url(${Image})`,
+					backgroundRepeat: false,
+				}}
+			>
+				<div class='grid-container-round3'>
+					{dataset.map((item, index) => {
+						return (
+							<div class='grid-item' key={index}>
+								<QuestionNumber
+									viewed={item.viewed}
+									QuestionNumber={item.id}
+									handleClick={handleClick}
+								/>
+							</div>
+						)
+					})}
+				</div>
+				<Modal
+					open={open}
+					onOk={handleOk}
+					onCancel={handleCancel}
+					footer={[
+						<>
+							<Button key='submit' onClick={handleOk}>
+								Go To Question
+							</Button>
+							<Button key='cancel' onClick={handleCancel}>
+								Close
+							</Button>
+						</>,
+					]}
+				>
+					<div className=' flex justify-evenly align-middle'>
+						<span>
+							<h2 style={{ color: 'black' }}>Question {questionNumber}</h2>
+						</span>
+						<span>
+							<img width={200} src={hufflepuff} alt='imageQuestion' />
+						</span>
+					</div>
+				</Modal>
 			</div>
 			<Modal
 				open={open}
@@ -65,25 +92,37 @@ function QuestionBank() {
 				onCancel={handleCancel}
 				footer={[
 					<>
-						<Button key='submit' onClick={handleOk}>
-							Go To Question
-						</Button>
-						<Button key='cancel' onClick={handleCancel}>
+						<div
+							onClick={handleOk}
+							className=' flex justify-center items-center'
+						>
+							<img width={200} src={next} alt='imageModal' />
+						</div>
+						{/* <Button key='submit' onClick={handleCancel}>
 							Close
-						</Button>
+						</Button> */}
 					</>,
 				]}
 			>
-				<div className=' flex justify-evenly align-middle'>
+				<div className=' flex items-center justify-center'>
 					<span>
-						<h2 style={{ color: 'black' }}>Question {questionNumber}</h2>
+						<h2
+							style={{
+								color: '#433528',
+								fontSize: '25px',
+								fontFamily: 'cursive',
+								fontWeight: '900',
+							}}
+						>
+							Question {QuestionNumber}
+						</h2>
 					</span>
 					<span>
-						<img width={200} src={hufflepuff} alt='image' />
+						<img width={180} src={hufflepuff} alt='image' />
 					</span>
 				</div>
 			</Modal>
-		</div>
+		</>
 	)
 }
 
