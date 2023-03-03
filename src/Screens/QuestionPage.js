@@ -17,6 +17,7 @@ import SwitchButton from '../Components/SwitchButton'
 import './HomeScreen/HomeScreen.css'
 import { Button, Modal, Progress } from 'antd'
 import Win from '../images/win.gif'
+import ProgressBar from '../Components/progressBar/ProgressBar'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
@@ -26,12 +27,10 @@ const QuestionPage = () => {
 	const [showCorrect, setShowCorrect] = useState(false)
 	const [triesAvailable, setTriesAvailable] = useState(2)
 	const [lockedAnswers, setLockedAnswers] = useState([])
-	const [progress, setProgress] = useState(100)
-	const childRef = useRef()
 
 	const navigate = useNavigate()
 	const [open, setOpen] = useState(false)
-	const QuestionBank = parseInt(round) === 3 ? round3 : data;
+	const QuestionBank = parseInt(round) === 3 ? round3 : data
 
 	// Close Model
 	const showModal = () => {
@@ -46,30 +45,31 @@ const QuestionPage = () => {
 		setOpen(false)
 	}
 
-	let nextPage = parseInt(QId) + 1
-
 	const getData = () => {
 		setQuestionData(QuestionBank[QId - 1])
 	}
 	useEffect(() => {
 		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(1)
-
 		getData()
 	}, [QId])
 
 	useEffect(() => {
-		let timeout;
-	
+		let timeout
+
 		if (open) {
-		  timeout = setTimeout(() => {
-			setOpen(false);
-		  }, 3000);
+			timeout = setTimeout(() => {
+				setOpen(false)
+			}, 3000)
 		}
-	
+
 		return () => {
-		  clearTimeout(timeout);
-		};
-	  }, [open]);
+			clearTimeout(timeout)
+		}
+	}, [open])
+
+	const HandleTimerButtonClick = () => {
+		setOpenTimer(!openTimer)
+	}
 
 	const HandleAnswerButtonClick = async () => {
 		if (selectedAnswerNumber) {
@@ -88,17 +88,15 @@ const QuestionPage = () => {
 		}
 	}
 
-	const HandleTimerButtonClick = () => {
-		setOpenTimer(!openTimer)
-	}
 	const HandleNextButtonClick = () => {
 		if (triesAvailable < 1) {
 			resetState()
 			QuestionBank[QId - 1].viewed = true
 		}
 
-		parseInt(round) === 3? navigate(`/questionbank_Round/${round}`) : navigate(`/questionbank/${round}`)
-		
+		parseInt(round) === 3
+			? navigate(`/questionbank_Round/${round}`)
+			: navigate(`/questionbank/${round}`)
 	}
 
 	const HandleSwitchButtonClick = async () => {
@@ -131,7 +129,11 @@ const QuestionPage = () => {
 		>
 			<video src={cover} autoPlay loop muted />
 			<Grid container className=' mx-5'>
-				<Progress percent={progress} showInfo={false} />
+				<ProgressBar
+					selectedAnswerNumber={selectedAnswerNumber}
+					showCorrect={showCorrect}
+					openTimer={openTimer}
+				/>
 			</Grid>
 			<Grid
 				container
@@ -145,7 +147,7 @@ const QuestionPage = () => {
 						width={370}
 						className=' border-white border-2'
 						src={QuestionData.image}
-						alt='image'
+						alt='imagea'
 					/>
 				)}
 			</Grid>
@@ -182,7 +184,7 @@ const QuestionPage = () => {
 				{parseInt(round) === 1 && (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
 				)}
-				{/* <TimerButton OnClickHandler={() => HandleTimerButtonClick()} /> */}
+				<TimerButton OnClickHandler={() => HandleTimerButtonClick()} />
 				<CorrectAnswersButton
 					showCorrect={showCorrect}
 					OnClickHandler={() => HandleAnswerButtonClick()}
@@ -208,7 +210,7 @@ const QuestionPage = () => {
 				]}
 			>
 				<div className=' flex justify-center align-middle'>
-					<img src={Win} width={200} alt='image' />
+					<img src={Win} width={200} alt='images' />
 				</div>
 				<div className=' text-center font-semibold text-green-600 text-xl'>
 					<h5>You Won 10 Points</h5>

@@ -4,6 +4,7 @@ import hufflepuff from '../../images/hufflepuff.gif'
 import './QuestionBank.css'
 import data from '../../data.json'
 import round3 from '../../round3.json'
+import next from '../../images/next.gif'
 import Image from '../../images/cover.jpg'
 import { useNavigate, useParams } from 'react-router'
 import { Button } from '@mui/material'
@@ -14,8 +15,8 @@ function QuestionBank() {
 	const { round } = useParams()
 	const navigate = useNavigate()
 
-	const dataset = parseInt(round) === 3? round3: data;
-	
+	const dataset = parseInt(round) === 3 ? round3 : data
+
 	const [open, setOpen] = useState(false)
 	const [questionNumber, setQuestionNumber] = useState()
 	const showModal = () => {
@@ -48,7 +49,7 @@ function QuestionBank() {
 			}}
 		>
 			<div class='grid-container-round1'>
-				{  dataset.map((item, index) => {
+				{dataset.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>
 							<QuestionNumber
