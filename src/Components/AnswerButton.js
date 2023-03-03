@@ -15,7 +15,6 @@ const AnswerButton = ({
 }) => {
 	const [buttonClicked, setButtonClicked] = useState(false)
 	const inSideClickHandle = () => {
-		setButtonClicked(!buttonClicked)
 		onClick()
 	}
 
@@ -35,29 +34,37 @@ const AnswerButton = ({
 	}
 
 	const styles = {
-		"@keyframes blinking": {
-		  "0%": {
-			backgroundColor: '#09731d',
-		  },
-		  "50%": {
-			backgroundColor: '#085e19',
-		  },
-		  "100%": {
-			backgroundColor: '#05360e',
-		  },
+		'@keyframes blinking': {
+			'0%': {
+				backgroundColor: '#09731d',
+			},
+			'50%': {
+				backgroundColor: '#085e19',
+			},
+			'100%': {
+				backgroundColor: '#05360e',
+			},
 		},
-	  };
+	}
 
 	const blinkingStyle = {
 		animation: `$blinking 1s infinite`,
-	  };
+	}
 	const conditionalCss =
 		parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
-			? { backgroundColor: '#09731d', color: 'white' , animation: `$blinking 1s infinite` } //green color
+			? {
+					backgroundColor: '#09731d',
+					color: 'white',
+					animation: `$blinking 1s infinite`,
+			  } //green color
 			: showCorrect &&
 			  SelectedAnswerNumber === AnswerNumber &&
 			  AnswerNumber === CorrectAnswer
-			? { backgroundColor: '#09731d', color: 'white', animation: `$blinking 1s infinite` } //green color
+			? {
+					backgroundColor: '#09731d',
+					color: 'white',
+					animation: `$blinking 1s infinite`,
+			  } //green color
 			: showCorrect &&
 			  SelectedAnswerNumber === AnswerNumber &&
 			  AnswerNumber !== CorrectAnswer
@@ -68,8 +75,6 @@ const AnswerButton = ({
 			? { backgroundColor: 'grey', color: 'white' }
 			: { backgroundColor: 'white', color: 'black' }
 
-
-			
 	return (
 		<Grid item sm={6} onClick={inSideClickHandle}>
 			<Box boxShadow={2}>
@@ -80,7 +85,10 @@ const AnswerButton = ({
 						...buttonCommonCss,
 					}}
 				>
-					<p style={{ width: 20 }} className=' bg-blue-900 text-white rounded-full font-medium flex items-center align-middle justify-center h-6 w-6 '>
+					<p
+						style={{ width: 20 }}
+						className=' bg-blue-900 text-white rounded-full font-medium flex items-center align-middle justify-center h-6 w-6 '
+					>
 						{AnswerNumber}.{' '}
 					</p>
 					<p className=' font-semibold text-start '>{Answer}</p>

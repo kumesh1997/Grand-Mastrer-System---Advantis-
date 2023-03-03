@@ -15,7 +15,7 @@ import cover from '../images/loop2.mp4'
 import Timer from '../Components/Timer'
 import SwitchButton from '../Components/SwitchButton'
 import './HomeScreen/HomeScreen.css'
-import { Button, Modal } from 'antd'
+import { Button, Modal, Progress } from 'antd'
 import Win from '../images/win.gif'
 
 const QuestionPage = () => {
@@ -26,7 +26,7 @@ const QuestionPage = () => {
 	const [showCorrect, setShowCorrect] = useState(false)
 	const [triesAvailable, setTriesAvailable] = useState(2)
 	const [lockedAnswers, setLockedAnswers] = useState([])
-	const [progress, setProgress] = useState(0)
+	const [progress, setProgress] = useState(100)
 	const childRef = useRef()
 
 	const navigate = useNavigate()
@@ -82,7 +82,7 @@ const QuestionPage = () => {
 				setTriesAvailable(triesAvailable - 1)
 				if (selectedAnswerNumber === QuestionData.answer) {
 					// alert('success')
-					showModal();
+					showModal()
 				}
 			}
 		}
@@ -130,8 +130,8 @@ const QuestionPage = () => {
 			className='home-container p-2'
 		>
 			<video src={cover} autoPlay loop muted />
-			<Grid container className=' p-2 text-center'>
-				<Timer ref={childRef} />
+			<Grid container className=' mx-5'>
+				<Progress percent={progress} showInfo={false} />
 			</Grid>
 			<Grid
 				container
@@ -172,7 +172,6 @@ const QuestionPage = () => {
 								lockedAnswers={lockedAnswers}
 								onClick={() => {
 									// console.log('clicked')
-									childRef.current.StopTheWatch()
 									setSelectedAnswerNumber(index + 1)
 								}}
 							/>
@@ -197,7 +196,7 @@ const QuestionPage = () => {
 
 			{/* Modal */}
 			<Modal
-				open={ round == 1 ? open : ''}
+				open={round == 1 ? open : ''}
 				onOk={handleOk}
 				onCancel={handleCancel}
 				footer={[
@@ -210,8 +209,10 @@ const QuestionPage = () => {
 			>
 				<div className=' flex justify-center align-middle'>
 					<img src={Win} width={200} alt='image' />
-				</div> 
-				<div className=' text-center font-semibold text-green-600 text-xl'><h5>You Won 10 Points</h5></div>
+				</div>
+				<div className=' text-center font-semibold text-green-600 text-xl'>
+					<h5>You Won 10 Points</h5>
+				</div>
 			</Modal>
 		</Grid>
 	)
