@@ -12,7 +12,7 @@ function HomeScreen() {
 				<Link to={'/questionbank/1'}>
 					<button class='btn third'>ROUND 01</button>
 				</Link>
-				<Link to={'/questionbank/3'}>
+				<Link to={'/questionbank_Round/3'}>
 					<button class='btn third'>ROUND 03</button>
 				</Link>
 			</div>

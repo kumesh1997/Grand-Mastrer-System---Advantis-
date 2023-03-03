@@ -1,21 +1,21 @@
 import React, { useState } from 'react'
-import QuestionNumber from '../../Components/QuestionNumber/QuestionNumber'
-import hufflepuff from '../../images/hufflepuff.gif'
-import './QuestionBank.css'
-import data from '../../data.json'
-import round3 from '../../round3.json'
-import next from '../../images/next.gif'
-import Image from '../../images/cover.jpg'
+import QuestionNumber from '../Components/QuestionNumber/QuestionNumber'
+import hufflepuff from '../images/hufflepuff.gif'
+import '../Screens/QuestionBank/QuestionBank.css'
+import data from '../data.json'
+import round3 from '../round3.json'
+import Image from '../images/hp.jpg'
 import { useNavigate, useParams } from 'react-router'
 import { Button } from '@mui/material'
 import { Modal } from 'antd'
 
-function QuestionBank() {
-	const { round } = useParams()
+const Round3QuestionPage = () => {
+
+    const { round } = useParams()
 	const navigate = useNavigate()
 
-	const dataset = parseInt(round) === 3 ? round3 : data
-
+	const dataset = parseInt(round) === 3? round3: data;
+	
 	const [open, setOpen] = useState(false)
 	const [questionNumber, setQuestionNumber] = useState()
 	const showModal = () => {
@@ -39,7 +39,8 @@ function QuestionBank() {
 			navigate(`/question/${round}/${Number}`)
 		}
 	}
-	return (
+
+    return (
 		<div
 			className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
 			style={{
@@ -47,7 +48,7 @@ function QuestionBank() {
 				backgroundRepeat: false,
 			}}
 		>
-			<div class='grid-container-round1'>
+			<div class='grid-container-round3'>
 				{  dataset.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>
@@ -84,8 +85,8 @@ function QuestionBank() {
 					</span>
 				</div>
 			</Modal>
-		</>
+		</div>
 	)
 }
 
-export default QuestionBank
+export default Round3QuestionPage

@@ -91,21 +91,24 @@ const QuestionPage = () => {
 	const HandleNextButtonClick = () => {
 		if (triesAvailable < 1) {
 			resetState()
-			data[QId - 1].viewed = true
+			QuestionBank[QId - 1].viewed = true
 		}
-		navigate(`/questionbank/${round}`)
+
+		parseInt(round) === 3
+			? navigate(`/questionbank_Round/${round}`)
+			: navigate(`/questionbank/${round}`)
 	}
 
 	const HandleSwitchButtonClick = async () => {
-		data.map((item, index) => {
+		QuestionBank.map((item, index) => {
 			if (item.id === parseInt(QId)) {
 				item.viewed = true
 			}
 		})
-		navigate(`/questionbank/${round}`)
+		navigate(`/questionbank_Round/${round}`)
 	}
 	const resetState = () => {
-		parseInt(round) === 3 ? setTriesAvailable(2) : setTriesAvailable(1)
+		parseInt(round) === 1 ? setTriesAvailable(2) : setTriesAvailable(1)
 		setOpenTimer(false)
 		setShowCorrect(false)
 		setSelectedAnswerNumber(null)
@@ -178,7 +181,7 @@ const QuestionPage = () => {
 					})}
 			</Grid>
 			<Grid container justifyContent={'flex-end'}>
-				{parseInt(round) === 3 && (
+				{parseInt(round) === 1 && (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
 				)}
 				<TimerButton OnClickHandler={() => HandleTimerButtonClick()} />
