@@ -12,7 +12,9 @@ import { Modal } from 'antd'
 function QuestionBank() {
 	const { round } = useParams()
 	const navigate = useNavigate()
+
 	const dataset = parseInt(round) === 3? round3: data;
+	
 	const [open, setOpen] = useState(false)
 	const [questionNumber, setQuestionNumber] = useState()
 	const showModal = () => {
@@ -81,7 +83,7 @@ function QuestionBank() {
 					</span>
 				</div>
 			</Modal>
-		</>
+		</div>
 	)
 }
 

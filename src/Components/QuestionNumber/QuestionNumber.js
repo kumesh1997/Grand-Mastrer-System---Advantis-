@@ -5,6 +5,7 @@ import './QuestionNumber.css'
 import snitch from '../../images/snitch.gif'
 import { Button, Modal } from 'antd'
 import next from '../../images/next.gif'
+import hufflepuff from '../../images/hufflepuff.gif'
 
 
 function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
@@ -42,19 +43,6 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 			: ' test cursor-pointer duration-75 active:scale-95'
 	}
 
-	useEffect(() => {
-		let timeout;
-	
-		if (open) {
-		  timeout = setTimeout(() => {
-			setOpen(false);
-		  }, 3000);
-		}
-	
-		return () => {
-		  clearTimeout(timeout);
-		};
-	  }, [open]);
 
 	return (
 		<div
@@ -81,18 +69,18 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 				onCancel={handleCancel}
 				footer={[
 					<>
-						<Button key='submit' onClick={handleOk}>
-							Go To Question
-						</Button>
-						<Button key='submit' onClick={handleCancel}>
+						<div onClick={handleOk} className=' flex justify-center items-center'>
+							<img width={200} src={next} alt="image" />
+						</div>
+						{/* <Button key='submit' onClick={handleCancel}>
 							Close
-						</Button>
+						</Button> */}
 					</>,
 				]}
 			>
-			<div className=' flex justify-evenly align-middle'>
-				<span><h2 style={{ color: 'black' }}>Question {QuestionNumber}</h2></span>
-				<span><img width={200} src={hufflepuff} alt='image' /></span>
+			<div className=' flex items-center justify-center'>
+				<span><h2 style={{ color: '#433528', fontSize: '25px', fontFamily:'cursive' , fontWeight: '900' }}>Question {QuestionNumber}</h2></span>
+				<span><img width={180} src={hufflepuff} alt='image' /></span>
 			</div>
 			
 				

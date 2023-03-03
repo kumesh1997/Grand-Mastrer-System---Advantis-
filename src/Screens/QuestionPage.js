@@ -57,6 +57,20 @@ const QuestionPage = () => {
 		getData()
 	}, [QId])
 
+	useEffect(() => {
+		let timeout;
+	
+		if (open) {
+		  timeout = setTimeout(() => {
+			setOpen(false);
+		  }, 3000);
+		}
+	
+		return () => {
+		  clearTimeout(timeout);
+		};
+	  }, [open]);
+
 	const HandleAnswerButtonClick = async () => {
 		if (selectedAnswerNumber) {
 			setShowCorrect(!showCorrect)
