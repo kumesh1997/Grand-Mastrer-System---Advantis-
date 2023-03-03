@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import './QuestionNumber.css'
-import gif from '../../images/cross.gif'
+import hufflepuff from '../../images/hufflepuff.gif'
+import snitch from '../../images/snitch.gif';
 import { Button, Modal } from 'antd'
 
 function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
@@ -64,7 +65,12 @@ function QuestionNumber({ QuestionNumber = 1, round = 1, viewed = false }) {
 					</>,
 				]}
 			>
-				<h1 style={{ color: 'black' }}>{QuestionNumber}</h1>
+			<div className=' flex justify-evenly align-middle'>
+				<span><h2 style={{ color: 'black' }}>Question {QuestionNumber}</h2></span>
+				<span><img width={200} src={hufflepuff} alt='image' /></span>
+			</div>
+			
+				
 			</Modal>
 		</div>
 	)

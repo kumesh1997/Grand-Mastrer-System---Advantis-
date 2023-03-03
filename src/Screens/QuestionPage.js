@@ -14,6 +14,8 @@ import cover from '../images/loop2.mp4'
 import Timer from '../Components/Timer'
 import SwitchButton from '../Components/SwitchButton'
 import './HomeScreen/HomeScreen.css'
+import { Button, Modal } from 'antd'
+import Win from '../images/win.gif'
 
 const QuestionPage = () => {
 	const { QId, round } = useParams()
@@ -27,6 +29,20 @@ const QuestionPage = () => {
 	const childRef = useRef()
 
 	const navigate = useNavigate()
+	const [open, setOpen] = useState(false)
+
+	// Close Model
+	const showModal = () => {
+		setOpen(true)
+	}
+
+	// Handle OK
+	const handleOk = () => {
+		setOpen(false)
+	}
+	const handleCancel = () => {
+		setOpen(false)
+	}
 
 	let nextPage = parseInt(QId) + 1
 
@@ -49,7 +65,8 @@ const QuestionPage = () => {
 			} else {
 				setTriesAvailable(triesAvailable - 1)
 				if (selectedAnswerNumber === QuestionData.answer) {
-					alert('success')
+					// alert('success')
+					showModal();
 				}
 			}
 		}
@@ -92,7 +109,7 @@ const QuestionPage = () => {
 				// backgroundRepeat: false,
 				alignContent: 'space-between',
 			}}
-			className='home-container '
+			className='home-container p-2'
 		>
 			<video src={cover} autoPlay loop muted />
 			<Grid container className=' p-2 text-center'>
@@ -122,7 +139,7 @@ const QuestionPage = () => {
 			>
 				{QuestionData && <QuestionView Question={QuestionData.question} />}
 			</Grid>
-			<Grid container spacing={4} textAlign={'center'} alignContent={'center'}>
+			<Grid container spacing={2} textAlign={'center'} alignContent={'center'}>
 				{QuestionData &&
 					QuestionData.answers.map((item, index) => {
 						return (
@@ -159,6 +176,25 @@ const QuestionPage = () => {
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
 				)}
 			</Grid>
+
+			{/* Modal */}
+			<Modal
+				open={ round == 1 ? open : ''}
+				onOk={handleOk}
+				onCancel={handleCancel}
+				footer={[
+					<>
+						{/* <Button key='submit' className=' bg-red-600 text-white font-semibold' onClick={handleCancel}>
+							Close
+						</Button> */}
+					</>,
+				]}
+			>
+				<div className=' flex justify-center align-middle'>
+					<img src={Win} width={200} alt='image' />
+				</div> 
+				<div className=' text-center font-semibold text-green-600 text-xl'><h5>You Won 10 Points</h5></div>
+			</Modal>
 		</Grid>
 	)
 }

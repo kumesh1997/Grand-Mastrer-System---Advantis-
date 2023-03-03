@@ -69,7 +69,7 @@ const Timer = forwardRef(({}, ref) => {
 
    
   return (
-    <div className=' absolute top-1 left-1'>
+    <div className=' absolute top-1 right-1'>
         <div 
             className=' text-center w-32 bg-black border-white border-2
                         text-white p-2 font-bold text-3xl rounded-lg cursor-pointer bg-opacity-60 duration-100 active:border-black'

@@ -33,13 +33,31 @@ const AnswerButton = ({
 			color: 'black',
 		},
 	}
+
+	const styles = {
+		"@keyframes blinking": {
+		  "0%": {
+			backgroundColor: '#09731d',
+		  },
+		  "50%": {
+			backgroundColor: '#085e19',
+		  },
+		  "100%": {
+			backgroundColor: '#05360e',
+		  },
+		},
+	  };
+
+	const blinkingStyle = {
+		animation: `$blinking 1s infinite`,
+	  };
 	const conditionalCss =
 		parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
-			? { backgroundColor: '#075716', color: 'white' } //green color
+			? { backgroundColor: '#09731d', color: 'white' , animation: `$blinking 1s infinite` } //green color
 			: showCorrect &&
 			  SelectedAnswerNumber === AnswerNumber &&
 			  AnswerNumber === CorrectAnswer
-			? { backgroundColor: '#075716', color: 'white' } //green color
+			? { backgroundColor: '#09731d', color: 'white', animation: `$blinking 1s infinite` } //green color
 			: showCorrect &&
 			  SelectedAnswerNumber === AnswerNumber &&
 			  AnswerNumber !== CorrectAnswer
@@ -49,6 +67,9 @@ const AnswerButton = ({
 			: lockedAnswers.find((value) => value === AnswerNumber)
 			? { backgroundColor: 'grey', color: 'white' }
 			: { backgroundColor: 'white', color: 'black' }
+
+
+			
 	return (
 		<Grid item sm={6} onClick={inSideClickHandle}>
 			<Box boxShadow={2}>
@@ -59,14 +80,15 @@ const AnswerButton = ({
 						...buttonCommonCss,
 					}}
 				>
-					<p style={{ width: 20 }} className=' text-black  font-medium  '>
+					<p style={{ width: 20 }} className=' bg-blue-900 text-white rounded-full font-medium flex items-center align-middle justify-center h-6 w-6 '>
 						{AnswerNumber}.{' '}
 					</p>
-					<p className=' font-semibold text-start'>{Answer}</p>
+					<p className=' font-semibold text-start '>{Answer}</p>
 
-					{/* <strong >
-					
-				</strong> */}
+					{/* <div className=' relative flex '>
+				<div className=' absolute float-left top-6 left-0 mr-6 h-6 w-6 rounded-full bg-blue-500 flex items-center align-middle justify-center'><span className=' text-white text-sm font-medium text-center'>{AnswerNumber}. </span></div>
+				<div className=' text-2xl float-right capitalize text-left ml-8'><p className=' text-black font-semibold'>{Answer}</p></div>
+			</div> */}
 				</Button>
 			</Box>
 		</Grid>
