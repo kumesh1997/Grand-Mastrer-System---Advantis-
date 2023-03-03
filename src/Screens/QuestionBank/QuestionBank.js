@@ -3,6 +3,7 @@ import QuestionNumber from '../../Components/QuestionNumber/QuestionNumber'
 import hufflepuff from '../../images/hufflepuff.gif'
 import './QuestionBank.css'
 import data from '../../data.json'
+import round3 from '../../round3.json'
 import Image from '../../images/cover.jpg'
 import { useNavigate, useParams } from 'react-router'
 import { Button } from '@mui/material'
@@ -11,6 +12,9 @@ import { Modal } from 'antd'
 function QuestionBank() {
 	const { round } = useParams()
 	const navigate = useNavigate()
+
+	const dataset = parseInt(round) === 3? round3: data;
+	
 	const [open, setOpen] = useState(false)
 	const [questionNumber, setQuestionNumber] = useState()
 	const showModal = () => {
@@ -35,29 +39,25 @@ function QuestionBank() {
 		}
 	}
 	return (
-		<>
-			{' '}
-			<div
-				className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
-				style={{
-					backgroundImage: `url(${Image})`,
-					backgroundRepeat: false,
-				}}
-			>
-				<div className='grid-container'>
-					{data.map((item, index) => {
-						return (
-							<div className='grid-item' key={index}>
-								<QuestionNumber
-									viewed={item.viewed}
-									QuestionNumber={item.id}
-									round={round}
-									handleClick={handleClick}
-								/>
-							</div>
-						)
-					})}
-				</div>
+		<div
+			className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
+			style={{
+				backgroundImage: `url(${Image})`,
+				backgroundRepeat: false,
+			}}
+		>
+			<div class='grid-container-round3'>
+				{  dataset.map((item, index) => {
+					return (
+						<div class='grid-item' key={index}>
+							<QuestionNumber
+								viewed={item.viewed}
+								QuestionNumber={item.id}
+								round={round}
+							/>
+						</div>
+					)
+				})}
 			</div>
 			<Modal
 				open={open}
@@ -83,7 +83,7 @@ function QuestionBank() {
 					</span>
 				</div>
 			</Modal>
-		</>
+		</div>
 	)
 }
 
