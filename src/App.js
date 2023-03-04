@@ -8,6 +8,7 @@ import HomeScreen from './Screens/HomeScreen/HomeScreen'
 import QuestionPage from './Screens/QuestionPage'
 import Round3QuestionPage from './Screens/Round3QuestionPage'
 import BlinkingComponent from './Components/BlinkingComponent'
+import ProphecyBall from './Components/ProphecyBall/ProphecyBall'
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path='/questionbank/:round' element={<QuestionBank />} />
 				<Route path='/questionbank_Round/:round' element={<Round3QuestionPage />}/>
 				<Route  path='/blink' element={<BlinkingComponent text='Kuemsh' />} />
+				<Route path='/ball' element={<ProphecyBall />} />
 				<Route path='/question/:round/:QId' element={<QuestionPage />} />
 			</Routes>
 			<div className=' text-base text-Red'>

@@ -5,6 +5,7 @@ import { Button, Modal } from 'antd'
 import next from '../images/next.gif'
 import hufflepuff from '../images/hufflepuff.gif'
 import './blink.css'
+import Sward from '../images/sward.png'
 
 const BlinkingComponent = ({ QuestionNumber = 1, round = 1, viewed = false }) => {
     

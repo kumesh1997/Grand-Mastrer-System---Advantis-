@@ -166,7 +166,7 @@ const QuestionPage = () => {
 			>
 				{QuestionData && <QuestionView Question={QuestionData.question} />}
 			</Grid>
-			<Grid container spacing={2} textAlign={'center'} alignContent={'center'}>
+			<Grid container spacing={4} textAlign={'center'} alignContent={'center'}>
 				{QuestionData &&
 					QuestionData.answers.map((item, index) => {
 						return (

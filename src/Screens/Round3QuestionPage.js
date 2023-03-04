@@ -9,6 +9,7 @@ import { useNavigate, useParams } from 'react-router'
 import { Button } from '@mui/material'
 import { Modal } from 'antd'
 import BlinkingComponent from '../Components/BlinkingComponent'
+import ProphecyBall from '../Components/ProphecyBall/ProphecyBall'
 
 const Round3QuestionPage = () => {
 
@@ -59,11 +60,11 @@ const Round3QuestionPage = () => {
 				backgroundRepeat: false,
 			}}
 		>
-			<div class='grid-container-round3'>
+			<div class='grid-container-round3 flex justify-evenly'>
 				{  dataset.map((item, index) => {
 					return (
 						<div class='grid-item' key={index}>
-							<BlinkingComponent
+							<ProphecyBall
 								viewed={item.viewed}
 								QuestionNumber={item.id}
 								round={round}
