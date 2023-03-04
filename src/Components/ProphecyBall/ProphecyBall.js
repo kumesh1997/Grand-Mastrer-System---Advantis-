@@ -35,7 +35,7 @@ const ProphecyBall = ({ QuestionNumber = 1, round = 1, viewed = false }) => {
 	let css
 	if (parseInt(QuestionNumber) % 3 === 1) {
 		css = viewed
-			? 'pointer-events-none'
+			? 'pointer-events-none '
 			: 'cursor-pointer duration-75 active:scale-95'
 	} else {
 		css = viewed
@@ -51,7 +51,7 @@ const ProphecyBall = ({ QuestionNumber = 1, round = 1, viewed = false }) => {
 			}}
 		>
 			{/* ProphecyBall */}
-			<div>
+			<div className=' relative'>
 				<div
 					style={{
 						height: '80px',
@@ -72,9 +72,6 @@ const ProphecyBall = ({ QuestionNumber = 1, round = 1, viewed = false }) => {
 											? '0' + QuestionNumber
 											: QuestionNumber}
 									</span>
-									<span className=' absolute w- top-1 left-0 text-red-600'>
-										<img width={200} src={Image} alt='image' />
-									</span>{' '}
 								</label>
 							) : (
 								<label className=' cursor-pointer'>
@@ -86,6 +83,15 @@ const ProphecyBall = ({ QuestionNumber = 1, round = 1, viewed = false }) => {
 						}
 					</div>
 				</div>
+				{
+					viewed? 
+					<div>
+						<span className=' absolute top-0 left-0 '>
+							<img width={150} src={Image} alt='image' />
+						</span>{' '}
+					</div>
+					: null
+				}
 			</div>
 			
 
