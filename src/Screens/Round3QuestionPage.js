@@ -63,7 +63,7 @@ const Round3QuestionPage = () => {
 			<div class='grid-container-round3 flex justify-evenly'>
 				{  dataset.map((item, index) => {
 					return (
-						<div class='grid-item' key={index}>
+						<div class='grid-item mt-5' key={index}>
 							<ProphecyBall
 								viewed={item.viewed}
 								QuestionNumber={item.id}

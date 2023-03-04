@@ -55,19 +55,20 @@ const QuestionPage = () => {
 		getData()
 	}, [QId])
 
-	// useEffect(() => {
-	// 	let timeout
+	// Close Modal in 3 Seconds
+	useEffect(() => {
+		let timeout
 
-	// 	if (open) {
-	// 		timeout = setTimeout(() => {
-	// 			setOpen(false)
-	// 		}, 3000)
-	// 	}
+		if (open) {
+			timeout = setTimeout(() => {
+				setOpen(false)
+			}, 3000)
+		}
 
-	// 	return () => {
-	// 		clearTimeout(timeout)
-	// 	}
-	// }, [open])
+		return () => {
+			clearTimeout(timeout)
+		}
+	}, [open])
 
 	const HandleTimerButtonClick = () => {
 		setOpenTimer(!openTimer)
