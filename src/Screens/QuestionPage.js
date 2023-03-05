@@ -19,6 +19,7 @@ import { Button, Modal, Progress } from 'antd'
 import Win from '../images/win.gif'
 import ProgressBar from '../Components/progressBar/ProgressBar'
 
+
 const QuestionPage = () => {
 	const { QId, round } = useParams()
 	const [QuestionData, setQuestionData] = useState()
@@ -188,6 +189,7 @@ const QuestionPage = () => {
 						)
 					})}
 			</Grid>
+			
 			<Grid container justifyContent={'flex-end'}>
 				{parseInt(round) === 1 && (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
