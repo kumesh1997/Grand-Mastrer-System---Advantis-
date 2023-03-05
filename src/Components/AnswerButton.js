@@ -77,7 +77,7 @@ const AnswerButton = ({
 			: { backgroundColor: 'white', color: 'black' }
 
 	return (
-		<Grid item sm={6} onClick={inSideClickHandle}>
+		<Grid item sm={6} onClick={ showCorrect? "" : inSideClickHandle}>
 			<Box boxShadow={2}>
 				<Button
 					variant='contained'

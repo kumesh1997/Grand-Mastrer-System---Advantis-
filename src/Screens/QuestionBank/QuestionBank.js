@@ -12,6 +12,7 @@ import { Modal } from 'antd'
 import BlinkingComponent from '../../Components/BlinkingComponent'
 import {Fab} from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home';
+import broom from '../../images/broom.gif';
 
 function QuestionBank() {
 	const { round } = useParams()

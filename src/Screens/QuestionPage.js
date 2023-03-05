@@ -137,7 +137,7 @@ const QuestionPage = () => {
 			className='home-container p-2'
 		>
 			<video src={cover} autoPlay loop muted />
-			<Grid container className=' mx-5'>
+			<Grid container className=' mx-4'>
 				<ProgressBar
 					selectedAnswerNumber={selectedAnswerNumber}
 					showCorrect={showCorrect}
@@ -200,7 +200,7 @@ const QuestionPage = () => {
 					OnClickHandler={() => HandleAnswerButtonClick()}
 				/>
 				{parseInt(QId) !== QuestionBank.length ? (
-					<NextButton OnClickHandler={() => HandleNextButtonClick()} />
+					<NextButton OnClickHandler={() => parseInt(round) === 1 ? ((selectedAnswerNumber != null && showCorrect) ? HandleNextButtonClick() : null) : ( (selectedAnswerNumber != null && showCorrect  && triesAvailable < 2 ) ? HandleNextButtonClick() : null ) } />
 				) : (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
 				)}

@@ -1,5 +1,6 @@
 import { Progress } from 'antd'
 import { useState, useEffect } from 'react'
+import LinearProgressWithLabel from '../LinearProgressWithLabel'
 
 function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer }) {
 	const [progress, setProgress] = useState(100)
@@ -8,7 +9,7 @@ function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer }) {
 			if (!selectedAnswerNumber && openTimer) {
 				setProgress((prevProgress) => prevProgress - 1)
 			}
-		}, 500)
+		}, 300)
 
 		if (progress === 0) {
 			clearInterval(interval)
@@ -22,7 +23,7 @@ function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer }) {
 		// eslint-disable-next-line no-unreachable
 	}, [showCorrect, progress, openTimer])
 
-	return <Progress percent={progress} />
+	return <LinearProgressWithLabel value={progress} />
 }
 
 export default ProgressBar
