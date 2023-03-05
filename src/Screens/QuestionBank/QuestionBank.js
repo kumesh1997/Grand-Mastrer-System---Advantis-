@@ -7,9 +7,11 @@ import round3 from '../../round3.json'
 import next from '../../images/next.gif'
 import Image from '../../images/cover.jpg'
 import { useNavigate, useParams } from 'react-router'
-import { Button } from '@mui/material'
+import { Button, Grid } from '@mui/material'
 import { Modal } from 'antd'
 import BlinkingComponent from '../../Components/BlinkingComponent'
+import {Fab} from '@mui/material'
+import HomeIcon from '@mui/icons-material/Home';
 
 function QuestionBank() {
 	const { round } = useParams()
@@ -40,6 +42,10 @@ function QuestionBank() {
 			navigate(`/question/${round}/${Number}`)
 		}
 	}
+
+	const homeOnClickHandle = () => {
+		navigate(`/`)
+	}
 	return (
 		<div
 			className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
@@ -60,7 +66,15 @@ function QuestionBank() {
 						</div>
 					)
 				})}
+
+				<div className=' relative left-2' onClick={homeOnClickHandle}>
+					<Fab color="primary" aria-label="add">
+						<HomeIcon />
+					</Fab>
+				</div>
 			</div>
+
+			
 
 			
 			<Modal

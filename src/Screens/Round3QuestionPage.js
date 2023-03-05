@@ -10,6 +10,8 @@ import { Button } from '@mui/material'
 import { Modal } from 'antd'
 import BlinkingComponent from '../Components/BlinkingComponent'
 import ProphecyBall from '../Components/ProphecyBall/ProphecyBall'
+import {Fab} from '@mui/material'
+import HomeIcon from '@mui/icons-material/Home';
 
 const Round3QuestionPage = () => {
 
@@ -52,6 +54,10 @@ const Round3QuestionPage = () => {
 		}
 	}
 
+	const homeOnClickHandle = () => {
+		navigate(`/`)
+	}
+
     return (
 		<div
 			className=' text-start fixed min-h-full min-w-full bg-cover bg-opacity-50'
@@ -72,6 +78,12 @@ const Round3QuestionPage = () => {
 						</div>
 					)
 				})}
+
+				<div className=' relative top-3/4' onClick={homeOnClickHandle}>
+					<Fab color="primary" aria-label="add">
+						<HomeIcon />
+					</Fab>
+				</div>
 			</div>
 
 			{/* Modal */}

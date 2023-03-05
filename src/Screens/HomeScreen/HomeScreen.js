@@ -8,7 +8,7 @@ function HomeScreen() {
 		<div className='home-container'>
 			<video src={VideoBg} autoPlay loop />
 			<div>
-				<h1>Grand Mastrer Quize</h1>
+				<h1>Grand Master Quiz</h1>
 				<Link to={'/questionbank/1'}>
 					<button class='btn third'>ROUND 01</button>
 				</Link>

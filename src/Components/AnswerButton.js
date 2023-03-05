@@ -92,7 +92,7 @@ const AnswerButton = ({
 					>
 						{AnswerNumber}.{' '}
 					</p>
-					<p className=' font-semibold text-start '>{Answer}</p>
+					<p className=' font-semibold text-start capitalize '>{Answer}</p>
 				</Button>
 			</Box>
 		</Grid>
