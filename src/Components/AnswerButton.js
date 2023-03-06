@@ -28,10 +28,6 @@ const AnswerButton = ({
 		// color: 'black',
 		fontWeight: 400,
 		fontSize: '1.2em',
-		'&:hover': {
-			backgroundColor: '#ffffff',
-			color: 'black',
-		},
 	}
 
 	const styles = {
@@ -51,30 +47,40 @@ const AnswerButton = ({
 	const blinkingStyle = {
 		animation: `$blinking 1s infinite`,
 	}
+
 	const conditionalCss =
-		parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
-			? {
-					backgroundColor: '#09731d',
-					color: 'white',
-					animation: `$blinking 1s infinite`,
-			  } //green color
-			: showCorrect &&
-			  SelectedAnswerNumber === AnswerNumber &&
-			  AnswerNumber === CorrectAnswer
-			? {
-					backgroundColor: '#09731d',
-					color: 'white',
-					animation: `$blinking 1s infinite`,
-			  } //green color
-			: showCorrect &&
-			  SelectedAnswerNumber === AnswerNumber &&
-			  AnswerNumber !== CorrectAnswer
-			? { backgroundColor: 'red', color: 'white' }
-			: !showCorrect && SelectedAnswerNumber === AnswerNumber
-			? { color: '#ffffff ', backgroundColor: '#E4A11B' } //brown color
-			: lockedAnswers.find((value) => value === AnswerNumber)
-			? { backgroundColor: 'grey', color: 'white' }
-			: { backgroundColor: 'white', color: 'black' }
+	parseInt(triesAvailable) < 1 && AnswerNumber === CorrectAnswer
+		? {
+				backgroundColor: '#09731d',
+				color: 'white',
+				animation: `$blinking 1s infinite`,
+		  } //green color
+		: showCorrect &&
+		  SelectedAnswerNumber === AnswerNumber &&
+		  AnswerNumber === CorrectAnswer
+		? {
+				backgroundColor: '#09731d',
+				color: 'white',
+				animation: `$blinking 1s infinite`,
+		  } //green color
+		: showCorrect &&
+		  SelectedAnswerNumber === AnswerNumber &&
+		  AnswerNumber !== CorrectAnswer
+		? { backgroundColor: 'red', color: 'white', '&:hover': {
+			backgroundColor: 'red',
+		}, }
+		: !showCorrect && SelectedAnswerNumber === AnswerNumber
+		? { color: '#ffffff ', backgroundColor: '#E4A11B', '&:hover': {
+			backgroundColor: '#E4A11B',
+		}, } //brown color
+		: lockedAnswers.find((value) => value === AnswerNumber)
+		? { backgroundColor: 'grey', color: 'white' , '&:hover': {
+			backgroundColor: 'grey',
+		},}
+		: { backgroundColor: 'white', color: 'black', '&:hover': {
+			backgroundColor: '#ffffff',
+			color: 'black',
+		}, }
 
 	return (
 		<Grid item sm={6} onClick={ showCorrect? "" : inSideClickHandle}>
