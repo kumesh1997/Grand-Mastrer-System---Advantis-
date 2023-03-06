@@ -19,7 +19,6 @@ import { Button, Modal, Progress } from 'antd'
 import Win from '../images/win.gif'
 import ProgressBar from '../Components/progressBar/ProgressBar'
 
-
 const QuestionPage = () => {
 	const { QId, round } = useParams()
 	const [QuestionData, setQuestionData] = useState()
@@ -84,6 +83,7 @@ const QuestionPage = () => {
 				setSelectedAnswerNumber(null)
 			} else {
 				setTriesAvailable(triesAvailable - 1)
+				setOpenTimer(false)
 				if (selectedAnswerNumber === QuestionData.answer) {
 					// alert('success')
 					showModal()
@@ -96,7 +96,11 @@ const QuestionPage = () => {
 		if (triesAvailable < 1) {
 			resetState()
 			QuestionBank[QId - 1].viewed = true
-		}else if(parseInt(round) === 3 && triesAvailable < 2 && selectedAnswerNumber === QuestionData.answer){
+		} else if (
+			parseInt(round) === 3 &&
+			triesAvailable < 2 &&
+			selectedAnswerNumber === QuestionData.answer
+		) {
 			resetState()
 			QuestionBank[QId - 1].viewed = true
 		}
@@ -113,8 +117,8 @@ const QuestionPage = () => {
 			}
 		})
 		parseInt(round) === 1
-		? navigate(`/questionbank/${round}`)
-		: navigate(`/questionbank_Round/${round}`)
+			? navigate(`/questionbank/${round}`)
+			: navigate(`/questionbank_Round/${round}`)
 	}
 	const resetState = () => {
 		parseInt(round) === 1 ? setTriesAvailable(2) : setTriesAvailable(1)
@@ -189,7 +193,7 @@ const QuestionPage = () => {
 						)
 					})}
 			</Grid>
-			
+
 			<Grid container justifyContent={'flex-end'}>
 				{parseInt(round) === 1 && (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
@@ -200,7 +204,19 @@ const QuestionPage = () => {
 					OnClickHandler={() => HandleAnswerButtonClick()}
 				/>
 				{parseInt(QId) !== QuestionBank.length ? (
-					<NextButton OnClickHandler={() => parseInt(round) === 1 ? ((selectedAnswerNumber != null && showCorrect) ? HandleNextButtonClick() : null) : ( (selectedAnswerNumber != null && showCorrect  && triesAvailable < 2 ) ? HandleNextButtonClick() : null ) } />
+					<NextButton
+						OnClickHandler={() =>
+							parseInt(round) === 1
+								? selectedAnswerNumber != null && showCorrect
+									? HandleNextButtonClick()
+									: null
+								: selectedAnswerNumber != null &&
+								  showCorrect &&
+								  triesAvailable < 2
+								? HandleNextButtonClick()
+								: null
+						}
+					/>
 				) : (
 					<SwitchButton OnClickHandler={() => HandleSwitchButtonClick()} />
 				)}
