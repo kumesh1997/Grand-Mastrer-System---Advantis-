@@ -28,10 +28,6 @@ const AnswerButton = ({
 		// color: 'black',
 		fontWeight: 400,
 		fontSize: '1.2em',
-		'&:hover': {
-			backgroundColor: '#ffffff',
-			color: 'black',
-		},
 	}
 
 	const styles = {
@@ -69,12 +65,21 @@ const AnswerButton = ({
 			: showCorrect &&
 			  SelectedAnswerNumber === AnswerNumber &&
 			  AnswerNumber !== CorrectAnswer
-			? { backgroundColor: 'red', color: 'white' }
+			? { backgroundColor: 'red', color: 'white', '&:hover': {
+				backgroundColor: 'red',
+			}, }
 			: !showCorrect && SelectedAnswerNumber === AnswerNumber
-			? { color: '#ffffff ', backgroundColor: '#E4A11B' } //brown color
+			? { color: '#ffffff ', backgroundColor: '#E4A11B', '&:hover': {
+				backgroundColor: '#E4A11B',
+			}, } //brown color
 			: lockedAnswers.find((value) => value === AnswerNumber)
-			? { backgroundColor: 'grey', color: 'white' }
-			: { backgroundColor: 'white', color: 'black' }
+			? { backgroundColor: 'grey', color: 'white' , '&:hover': {
+				backgroundColor: 'grey',
+			},}
+			: { backgroundColor: 'white', color: 'black', '&:hover': {
+				backgroundColor: '#ffffff',
+				color: 'black',
+			}, }
 
 	return (
 		<Grid item sm={6} onClick={ showCorrect? "" : inSideClickHandle}>
