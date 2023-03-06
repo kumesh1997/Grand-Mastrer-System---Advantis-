@@ -142,6 +142,8 @@ const QuestionPage = () => {
 					selectedAnswerNumber={selectedAnswerNumber}
 					showCorrect={showCorrect}
 					openTimer={openTimer}
+					round={round}
+					tries={triesAvailable}
 				/>
 			</Grid>
 			<Grid
@@ -156,7 +158,7 @@ const QuestionPage = () => {
 						width={370}
 						className=' border-white border-2'
 						src={QuestionData.image}
-						alt='imagea'
+						alt='image'
 					/>
 				)}
 			</Grid>

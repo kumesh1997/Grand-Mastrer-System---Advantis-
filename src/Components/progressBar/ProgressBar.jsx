@@ -2,7 +2,7 @@ import { Progress } from 'antd'
 import { useState, useEffect } from 'react'
 import LinearProgressWithLabel from '../LinearProgressWithLabel'
 
-function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer }) {
+function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer, round, tries }) {
 	const [progress, setProgress] = useState(100)
 	useEffect(() => {
 		const interval = setInterval(() => {
