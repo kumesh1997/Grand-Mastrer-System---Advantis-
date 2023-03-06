@@ -77,18 +77,19 @@ const QuestionPage = () => {
 
 	const HandleAnswerButtonClick = async () => {
 		if (selectedAnswerNumber) {
-			setShowCorrect(!showCorrect)
-			if (showCorrect) {
-				const array = [...lockedAnswers, selectedAnswerNumber]
-				setLockedAnswers(array)
-				setSelectedAnswerNumber(null)
-			} else {
-				setTriesAvailable(triesAvailable - 1)
-				if (selectedAnswerNumber === QuestionData.answer) {
-					// alert('success')
-					showModal()
+				setShowCorrect(!showCorrect)
+				if (showCorrect) {
+					const array = [...lockedAnswers, selectedAnswerNumber]
+					setLockedAnswers(array)
+					setSelectedAnswerNumber(null)
+				} else {
+					setTriesAvailable(triesAvailable - 1)
+					setOpenTimer(false)
+					if (selectedAnswerNumber === QuestionData.answer) {
+						// alert('success')
+						showModal()
+					}
 				}
-			}
 		}
 	}
 
