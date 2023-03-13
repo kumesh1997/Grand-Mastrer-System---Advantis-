@@ -18,6 +18,8 @@ import './HomeScreen/HomeScreen.css'
 import { Button, Modal, Progress } from 'antd'
 import Win from '../images/win.gif'
 import ProgressBar from '../Components/progressBar/ProgressBar'
+import PopUp from '../Components/PopUp'
+import hat from '../images/hat.gif'
 
 
 const QuestionPage = () => {
@@ -28,10 +30,12 @@ const QuestionPage = () => {
 	const [showCorrect, setShowCorrect] = useState(false)
 	const [triesAvailable, setTriesAvailable] = useState(2)
 	const [lockedAnswers, setLockedAnswers] = useState([])
+	const [ openPopup, setOpenPopup ] = useState(false);
 
 	const navigate = useNavigate()
 	const [open, setOpen] = useState(false)
 	const QuestionBank = parseInt(round) === 3 ? round3 : data
+
 
 	// Close Model
 	const showModal = () => {
@@ -145,6 +149,7 @@ const QuestionPage = () => {
 					openTimer={openTimer}
 					round={round}
 					tries={triesAvailable}
+					handlePopup={setOpenPopup}
 				/>
 			</Grid>
 			<Grid
@@ -229,6 +234,8 @@ const QuestionPage = () => {
 					<h5>You Won 10 Points</h5>
 				</div>
 			</Modal>
+
+			<PopUp image={hat} imgWidth={200} openModel={openPopup} handleOkButton={handleOk} handleCancelButton={handleCancel} message={"Your Time is Over"} FontColor={'red'} PopupHandler={setOpenPopup}/>
 		</Grid>
 	)
 }

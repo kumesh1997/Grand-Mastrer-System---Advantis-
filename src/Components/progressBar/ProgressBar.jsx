@@ -2,7 +2,7 @@ import { Progress } from 'antd'
 import { useState, useEffect } from 'react'
 import LinearProgressWithLabel from '../LinearProgressWithLabel'
 
-function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer, round, tries }) {
+function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer, round, tries, handlePopup }) {
 	const [progress, setProgress] = useState(100)
 	useEffect(() => {
 		const interval = setInterval(() => {
@@ -13,7 +13,8 @@ function ProgressBar({ selectedAnswerNumber, showCorrect, openTimer, round, trie
 
 		if (progress === 0) {
 			clearInterval(interval)
-			alert('Progress bar complete!')
+			// alert('Progress bar complete!')
+			handlePopup(true);
 		}
 		if (showCorrect) {
 			setProgress(100)
